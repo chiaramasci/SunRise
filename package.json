@@ -1,6 +1,6 @@
 {
-  "name": "try_express",
-  "version": "0.0.0",
+  "name": "SunRise",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"

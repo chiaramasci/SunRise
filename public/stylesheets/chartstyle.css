@@ -1,0 +1,65 @@
+#container{
+width:90wv;
+position:relative;
+margin-left:-35vw;
+left:50%;
+top:10%;}
+
+#canvas-holder{
+width:50vw;
+position:absolute;
+left:0;
+top:0;}
+
+#report{
+width:40wv;
+position:absolute;
+right:0;
+top:0;
+height:100%;
+background:#87d37c;}
+
+body{
+background-image:url(../images/parallax1.jpg);
+background-size:cover;
+background-repeat:no-repeat;}
+
+.lines{
+    border-bottom: solid 1px #fff;
+    padding: 10px 0;}
+
+b{
+    font-weight:400;
+    font-size:20px;}
+
+#notes{
+    font-size: 11px;
+    position: absolute;
+    bottom: 0;}
+
+.half{
+        width: 50%;
+        box-sizing: border-box;
+        line-height: 1;
+        float: left;
+        border-bottom: #fff 2px solid;
+        padding-bottom: 13px;
+        margin-top: 0;}
+
+.half b{
+    font-size:16px;}
+
+h2{
+    text-align: center;
+    font-weight: 100;
+    text-transform: uppercase;
+    font-size: 27px;
+    clear:both;}
+
+h3{
+    text-align: center;
+    font-weight: 100;
+    clear:both;}
+
+.box{
+    margin-top:5vh;}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+  <%include templates/header.ejs%>
+
+     <div class="parallax" style="height:100vh;"></div>
+        <div class="band">
+        <h2>Help</h2>
+        <p>In this page you can have more information about the required parameters
+        in the pages <a href="/calculate">companies</a> and <a href="/solaraid">solar aid</a><br>
+        Click on what you want to have more information<br>
+        <ul>
+        <li><a href="#location_italy">Location (companies)</a></li>
+        <li><a href="#tilt">Tilt</a></li>
+        <li><a href="#orientation">Orientation</a></li>
+        <li><a href="#surface">Surface</a></li>
+        <li><a href="#type">Type</a></li>
+        <li><a href="#kwp">Peak Power</a></li>
+        <li><a href="#standing">Standing</a></li>
+        <li><a href="#necessity">Company's necessity</a></li>
+        </ul>
+
+        </p>
+        </div>
+
+        <div class="parallax" style="background-image:url(../images/parallax10.png);" id="location_italy"></div>
+        <div class="band">
+        <h3>Location (companies)</h3>
+        <p>You have to insert the italian locality writing its latitude and longitude in decimals degrees.<br>
+        To find out the right latitude and the latitude you can go to this <a href="http://www.latlong.net/">link</a> <br>
+        </p>
+        </div>
+
+        <div class="parallax" style="background-image:url(../images/parallax11.png);" id="tilt"></div>
+        <div class="band" >
+        <h3>Tilt</h3>
+        <p>The "tilt" value indicates the inclination of the photovoltaic system. <br>This values goes from 0° (not inclinated) to 90°. <br>
+        It is necessary to evaluate the actual solar irradiance received by the photovoltaic cells.
+        </p>
+        </div>
+
+        <div class="parallax" style="background-image:url(../images/parallax12.png);" id="orientation"></div>
+        <div class="band" >
+        <h3>Orientation</h3>
+        <p>This value indicated towards which cardinal point is directed the photovoltaic system. <br>
+        The value goes from -90° (East) to +90°(West), as a consequence to insert South, South-East and South-West in degrees you have to write 0°, -45°, +45°.<br></p>
+        </div>
+
+        <div class="parallax" style="background-image:url(../images/surfaces.jpg);" id="surface"></div>
+        <div class="band" >
+        <h3>Surface</h3>
+        <p>This parameter indicates which type of surface the system is leaning on. <br>
+        This value is necessary to evaluate the reflection coefficient, the darker the surface is, the lower the coefficient is.</p>
+        </div>
+
+        <div class="parallax" style="background-image:url(../images/parallax13.png);" id="type"></div>
+        <div class="band" >
+        <h3>Type</h3>
+        <p>
+        The type of photovoltaic system has to be specified among these ones:<br>
+        <ul>
+        <li>C-Si: Crystalline Silicon (1st and 2nd image)</li>
+        <li>CdTE: Cadmium telluride (3rd image)</li>
+        <li>CIS/CIGS: Copper Indium Selenide / Copper Indium Gallium Selenide (4th image)</li>
+        </ul>
+        The first type includes both the mono-crystalline and the poly-crystalline. As they both are thin film photovoltaic panels, the last two types have very similar appearances.
+        </p>
+        </div>
+
+        <div class="parallax" style="background-image:url(../images/parallax4.jpg);" id="kwp"></div>
+        <div class="band" >
+        <h3>Peak Power</h3>
+        <p>The Peak Power (expressed in kwp) is ...<br>
+        If you don't know it, you can calculate it from the area of your modules and the efficiency<br>
+        </p>
+        </div>
+
+        <div class="parallax" style="background-image:url(../images/standing.jpg);" id="standing"></div>
+        <div class="band" >
+        <h3>Standing</h3>
+        <p>The way the photovolatic panels are mounted has to be selected. <br>
+        If they are mounted on a surface select "building integrated system", if they are on a pole select "free standing system".<br>
+        This parameter is necessary to evaluate how the system overheats during the day</p>
+        </div>
+
+        <div class="parallax" style="background-image:url(../images/necessity.jpg);" id="necessity"></div>
+        <div class="band" >
+        <h3>Energy needed</h3>
+        <p>The energy needed per month in watt-hours has to be inserted for each month.</p>
+        </div>
+
+        <div class="parallax" style="background-image:url(../images/back_solaraid.png);" id="location_africa"></div>
+        <div class="band">
+        <h3>Location (Solaraid)</h3>
+        <p>Here the location of the donation has to be inserted. To begin with, select the state from the dropdown menu (if missing select "Global"),
+        then insert the latitude and the longitude in decimal degrees. <br>
+        If you do not know the exact location, you can both go over the desired spot with your mouse and insert the values that appear in the lower part or use
+        these locations for the different states: <br>
+        <ul>
+        <li>Kenya: latitude 1, longitude 38</li>
+        <li>Malawi: latitude -13.50, longitude 34</li>
+        <li>Zambia: latitude -15, longitude 30</li>
+        <li>Tanzania: latitude -6, longitude 35</li
+        </ul>
+
+        </p>
+        </div>
+
+        <div class="parallax" style="background-image:url(../images/africa.jpg);" id="gmt"></div>
+        <div class="band">
+        <h3>GMT</h3>
+        <p>The time zone of the location inserted has to be selected.<br>
+        This has to be done only if "Global" is selected in the location field.</p>
+        </div>
+
+        <div class="parallax" style="background-image:url(../images/parallax4.jpg);" id="donation"></div>
+        <div class="band">
+        <h3>Donation</h3>
+        <p>Lorem Ipsum djkdkdfkjdfkjdfjkdfjkdfjkdjkdfjkfd</p>
+        </div>
+  </body>
+</html>

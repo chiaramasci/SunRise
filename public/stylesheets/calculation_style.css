@@ -1,0 +1,70 @@
+#inputs{
+    background-color:#87d37c;
+    width:30vw;
+    height:100vh;
+    box-sizing:border-box;
+    padding:50px;
+    position:relative;
+    top:0;
+    left:0;
+    float:left;}
+
+#map_div{
+    width:70vw;
+    height:100vh;
+    position:relative;
+    top:70px;
+    right:0;
+    float:right;
+    }
+
+#links {
+    float: right;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-right: 25px;
+    box-sizing: border-box;
+    background: #fff;
+    margin:0;
+}
+
+#nav {
+    width: 70vw;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: #fff;
+    z-index:1;
+}
+
+p{
+    font-size:13px;
+    font-weight:300;}
+
+b{
+    font-weight:400;
+    font-size:15px;}
+
+canvas{
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+    }
+    #chartjs-tooltip {
+      opacity: 1;
+      position: absolute;
+        background:blue;
+      color: white;
+      border-radius: 3px;
+      -webkit-transition: all .1s ease;
+      transition: all .1s ease;
+      pointer-events: none;
+      -webkit-transform: translate(-40%, 0);
+      transform: translate(-40%, 0);
+    }
+
+    .chartjs-tooltip-key {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+    }

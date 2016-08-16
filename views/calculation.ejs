@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/calculation_style.css' />
+    <link rel='stylesheet' href='/stylesheets/tips.css' />
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+
+  </head>
+
+  <body>
+    <%include templates/header.ejs%>
+
+<div style="clear:both;">
+    <!--MAP CANVAS-->
+    <div id="map_div">
+        <canvas id="map" width="1024" height="768">
+            Your browser does not support HTML5 Canvas.
+        </canvas>
+    </div>
+
+    <!--USER INPUTS-->
+    <div id="inputs">
+    <form method="post" name="user_inputs">
+
+    <fieldset>
+    <legend>Location (Italy)</legend>
+    lat
+    <input type="text" name="lat" style="width:70px;">
+    long
+    <input type="text" name="long" style="width:70px;">
+
+    <a class="question" href="/howto/#location_italy" target="_blank" id="location_italy">?</a>
+    </fieldset>
+
+    <fieldset>
+    <legend>tilt</legend>
+    <input type="value"  name="tilt">
+
+    <a class="question" id="tilt" href="/howto/#tilt" target="_blank">?</a>
+    </fieldset>
+
+    <fieldset>
+    <legend>orientation</legend>
+    <input type="value" name="azimuth">
+
+    <a class="question" id="orientation" href="/howto/#orientation" target="_blank">?</a>
+    </fieldset>
+
+    <fieldset>
+    <legend>where is it</legend>
+    <select name="corifl">
+      <option value="0.75">Neve o film di ghiaccio</option>
+      <option value="0.07">Superfici acquose</option>
+      <option value="0.14">Suolo(creta,marne)</option>
+      <option value="0.04">Strada sterrata</option>
+      <option value="0.07">Campi con raccolti maturi e piante</option>
+      <option value="0.10">Asfalto invecchiato</option>
+      <option value="0.22">Calcestruzzo invecchiato</option>
+      <option value="0.20">Erba secca</option>
+      <option value="0.26">Erba verde</option>
+      <option value="0.13">Tetti o terrazze in bitume</option>
+      <option value="0.20">Pietrisco</option>
+      <option value="0.27">Superfici scure di edifici</option>
+      <option value="0.60">Superfici chiare di edifici</option>
+      <option value="0.2">Sconosciuto</option>
+    </select>
+
+    <a class="question" id="surface" href="/howto/#surface" target="_blank">?</a>
+    </fieldset>
+
+    <fieldset>
+    <legend>Type</legend>
+    <select name="type">
+        <option value="c-Si">c-Si</option>
+        <option value="CdTE">CdTE</option>
+        <option value="CIS">CIS/CIGS</option>
+    </select>
+
+    <a class="question" id="type" href="/howto/#type" target="_blank">?</a>
+    </fieldset>
+
+    <fieldset>
+    <legend>kwp</legend>
+    <input type="text" name="kwp">
+    <a class="question" id="kwp" href="/howto/#kwp" target="_blank">?</a>
+    </fieldset>
+
+    <fieldset>
+    <legend>Standing</legend>
+    <div style="width:180px;">
+    <input type="radio" name="standing" value="free_standing" checked="checked">free standing system
+    <input type="radio" name="standing" value="building_integrated">building integrated system
+    </div>
+    <a class="question" id="standing" href="/howto/#standing" target="_blank">?</a>
+    </fieldset>
+
+    <fieldset>
+    <legend>Monthly average of the energy needed (Wh)</legend>
+    <input type="text" name="energy1" placeholder="January">
+    <input type="text" name="energy2" placeholder="February">
+    <input type="text" name="energy3" placeholder="March">
+    <input type="text" name="energy4" placeholder="April">
+    <input type="text" name="energy5" placeholder="May">
+    <input type="text" name="energy6" placeholder="June">
+    <input type="text" name="energy7" placeholder="July">
+    <input type="text" name="energy8" placeholder="August">
+    <input type="text" name="energy9" placeholder="September">
+    <input type="text" name="energy10" placeholder="October">
+    <input type="text" name="energy11" placeholder="November">
+    <input type="text" name="energy12" placeholder="December">
+    <a class="question" id="necessity" href="/howto/#necessity" target="_blank">?</a>
+    </fieldset>
+
+    <div id="errors"></div>
+    <input type="button" value="Send" onClick="validation()" class="button" id="chartButton">
+    </div>
+
+
+        </div>
+
+ </form>
+
+    </div>
+
+
+
+
+    <!--JQUERY-->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <!--WEB WORLD WIND-->
+    <script src="http://worldwindserver.net/webworldwind/worldwindlib.js" type="text/javascript"></script>
+
+    <!--CALCULUS SCRIPT-->
+    <script src="https://d3js.org/d3-queue.v3.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src='javascripts/calculus.js'></script>
+
+    <!--GRAPH-->
+    <script src='/javascripts/Chart.js'></script>
+  </body>
+</html>

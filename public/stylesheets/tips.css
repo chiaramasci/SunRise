@@ -1,0 +1,32 @@
+#location_italy::before{
+    content: 'You have to insert the latitude and the longitude in decimal degrees of the location where the photovolatic system is set. For further info and for how you can find them, click on the "?"';}
+
+#tilt::before{
+    content: 'Insert the angle (from 0° to 90°) of inclination of the photovoltaic system. For further info, click on the "?"';}
+
+#orientation::before{
+    content: 'Here you have to insert the angle (from -90° to 90°) that indicates the orientation towards the cardinal points. 0° = the system is straightly directed towards South, -90° = towards East and 90° = towards West. For further info, click on the "?"';}
+
+#surface::before{
+    content: 'In this field the surface where the photovoltaic system is placed on has to be chosen. If unknown or different from the ones in the list, just select "unknown". For further info, click on the "?"';}
+
+#type::before{
+    content:'The type of the photovoltaic system has to be chosen. c-Si = crystalline silicon, CdTE = cadmium telluride, CIS/CIGS = copper indium gallium selenide. For further info, click on the "?"';}
+
+#kwp::before{
+    content:'You have to insert the peak power of the photovoltaic system. If you do not know it, or you need more information, just click on the "?"';}
+
+#standing::before{
+    content:'It has to be indicated the way the system is mounted, whether on a surface (bulding integrated system) or on a pole (free standing system). For further info, click on the "?"';}
+
+#necessity::before{
+    content:'The monthly energetic need has to be indicated for each month in watt-hours.'}
+
+#location_africa::before{
+    content:'You have to choose the state of the location you are going to insert after. If the state is not in the list, just choose "Global". The latitude and the longitude have to be in decimal degrees. If you do not know the exact location, just go over the globe on the desired spot and copy the values (N = positive, S = negative, E = positive, W = negative). For further info, click on the "?"';}
+
+#time_zone::before{
+    content:'The time zone of the location inserted has to be chosen. If you do not know it, click on the "?"';}
+
+#donation::before{
+    content:'Insert your estimated donation in pounds. Do not worry, the effective donation can only be done on the Solar Aid website. For further information or if you need to convert from another currency, click on "?"';}

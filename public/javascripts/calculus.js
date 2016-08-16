@@ -25,46 +25,7 @@ var long = 12;
         wwd.addLayer(new WorldWind.CoordinatesDisplayLayer(wwd));
         wwd.addLayer(new WorldWind.ViewControlsLayer(wwd));
 
-
-
-
-        //go to location
-        send.addEventListener("click", function(){
-        var lat = document.user_inputs.lat.value;
-        var long = document.user_inputs.long.value;
-        wwd.goToAnimator.goTo(new WorldWind.Location(lat, long, 2e5));
-
-        // Create the placemark.
-          placemark = new WorldWind.Placemark(new WorldWind.Position(lat, long, 1e2), false, null);
-          placemark.label = "The light you donated";
-          placemark.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
-
-          // Create the placemark attributes for the placemark.
-          placemarkAttributes = new WorldWind.PlacemarkAttributes(placemarkAttributes);
-          // Wrap the canvas created above in an ImageSource object to specify it as the placemark image source.
-          placemarkAttributes.imageSource = new WorldWind.ImageSource(canvas);
-          placemark.attributes = placemarkAttributes;
-
-          // Create the highlight attributes for this placemark. Note that the normal attributes are specified as
-          // the default highlight attributes so that all properties are identical except the image scale. You could
-          // instead vary the color, image, or other property to control the highlight representation.
-          highlightAttributes = new WorldWind.PlacemarkAttributes(placemarkAttributes);
-          highlightAttributes.imageScale = 1.2;
-          placemark.highlightAttributes = highlightAttributes;
-
-          // Add the placemark to the layer.
-                  placemarkLayer.addRenderable(placemark);
-
-          // Add the placemarks layer to the World Window's layer list.
-          wwd.addLayer(placemarkLayer);
-
-        });
-
-
-
-
     }
-
 
 
 //VARIABLES
@@ -158,8 +119,8 @@ function validation(){
                return false;
             }
 
-    if ((azimuth == "") || (azimuth == "undefined") || isNaN(azimuth) || azimuth > 180 || azimuth < -30) {
-                   error_space.innerHTML = "Inserire orientamento tra +180 e -180";
+    if ((azimuth == "") || (azimuth == "undefined") || isNaN(azimuth) || azimuth > 90 || azimuth < -90) {
+                   error_space.innerHTML = "Inserire orientamento tra +90 e -90";
                    document.user_inputs.azimuth.focus();
                    return false;
                 }
@@ -659,6 +620,15 @@ function validation(){
             return Ps;
       }
 
+      function Ptot(Ps){
+        Psum = 0;
+        console.log("starting list: " + Ps);
+        for(i = 0; i < 12; i++){
+            Psum = Psum + parseFloat(Ps[i]);}
+
+        console.log("sum: " + Psum);
+        return Psum;}
+
       function ReportCalc(Energies,Ps){
         var report = []
         for (i = 0; i < 12; i++){
@@ -667,6 +637,164 @@ function validation(){
             }
         return report}
 
+        function percentageProd(Psum,Nsum){
+        console.log(Nsum);
+        var remains = Psum - Nsum;
+        console.log(remains);
+        var remains = remains * 100/Nsum;
+
+        console.log(remains);
+
+        if (remains <= -100){var markerColor = "#bf3137"}
+        if (remains <= -50 && remains > -100){var markerColor = "#bb5945"}
+        if (remains <= 0 && remains > -50){var markerColor = "#b47b52"}
+        if (remains <= 50 && remains > 0){var markerColor = "#ab9861"}
+        if (remains <= 100 && remains > 50){var markerColor = "#9eb06e"}
+        if (remains > 100){var markerColor = "#8bc47b"}
+
+        return markerColor;
+        }
+
+        function mapWithMarker(lat,long,Psum,Nsum) {
+                // Create a World Window for the canvas.
+                var wwd = new WorldWind.WorldWindow("map");
+
+                 //initial position
+                var startLat = 42.51;
+                var startLong = 12;
+                wwd.navigator.lookAtLocation.latitude = startLat;
+                wwd.navigator.lookAtLocation.longitude = startLong;
+                wwd.navigator.range = 17e5; //200 000 meters
+
+
+                // Add some image layers to the World Window's globe.
+                wwd.addLayer(new WorldWind.BMNGOneImageLayer());
+                wwd.addLayer(new WorldWind.BingAerialWithLabelsLayer());
+
+                // Add a compass, a coordinates display and some view controls to the World Window.
+                wwd.addLayer(new WorldWind.CompassLayer());
+                wwd.addLayer(new WorldWind.CoordinatesDisplayLayer(wwd));
+                wwd.addLayer(new WorldWind.ViewControlsLayer(wwd));
+
+                //go to location
+                var lat = document.user_inputs.lat.value;
+                var long = document.user_inputs.long.value;
+                var markerText = "Annual production: " + Math.round(Psum) + " Wh";
+                var markerColor = percentageProd(Psum,Nsum);
+                wwd.goToAnimator.goTo(new WorldWind.Location(lat, long, 2e5));
+
+                //SQUARES
+              var screenImageLayer = new WorldWind.RenderableLayer();
+                                        screenImageLayer.displayName = "Screen Images";
+
+              var square1 = document.createElement("canvas"),
+                          ctxsq1 = square1.getContext("2d"),
+                          size = 65, c = size / 2;
+
+                      square1.width = size;
+                      square1.height = size * 7;
+
+                      ctxsq1.beginPath();
+                      ctxsq1.fillStyle = "#8bc47b";
+                      ctxsq1.rect(c, c, size, size);
+                      ctxsq1.fill();
+
+                      ctxsq1.beginPath();
+                      ctxsq1.fillStyle = "#9eb06e";
+                      ctxsq1.rect(c, c*2, size, 65/2);
+                      ctxsq1.fill();
+
+                      ctxsq1.beginPath();
+                      ctxsq1.fillStyle = "#ab9861";
+                      ctxsq1.rect(c, c*3, size, 65/2);
+                      ctxsq1.fill();
+
+                      ctxsq1.beginPath();
+                      ctxsq1.fillStyle = "#b47b52";
+                      ctxsq1.rect(c, c*4, size, 65/2);
+                      ctxsq1.fill();
+
+                      ctxsq1.beginPath();
+                      ctxsq1.fillStyle = "#bb5945";
+                      ctxsq1.rect(c, c*5, size, 65/2);
+                      ctxsq1.fill();
+
+                      ctxsq1.beginPath();
+                      ctxsq1.fillStyle = "#bf3137";
+                      ctxsq1.rect(c, c*6, size, 65/2);
+                      ctxsq1.fill();
+
+                      // Create the screen image and place it in the upper-left corner.
+                      screenOffset = new WorldWind.Offset(WorldWind.OFFSET_FRACTION, 0, WorldWind.OFFSET_FRACTION, 1);
+                      var screenImage1 = new WorldWind.ScreenImage(screenOffset, new WorldWind.ImageSource(square1));
+                      screenImage1.imageOffset = new WorldWind.Offset(WorldWind.OFFSET_FRACTION, 0, WorldWind.OFFSET_FRACTION, 1);
+
+                      // Add the screen images to a layer and the layer to the World Window's layer list.
+                      screenImageLayer.addRenderable(screenImage1);
+                      wwd.addLayer(screenImageLayer);
+
+
+                //PLACEMARK
+                var placemark,
+                            placemarkAttributes = new WorldWind.PlacemarkAttributes(null),
+                            highlightAttributes,
+                            placemarkLayer = new WorldWind.RenderableLayer("Placemarks"),
+                            latitude = lat,
+                            longitude = long;
+
+                        // Set up the common placemark attributes.
+                        placemarkAttributes.imageScale = 1;
+                        placemarkAttributes.imageOffset = new WorldWind.Offset(
+                            WorldWind.OFFSET_FRACTION, 0.5,
+                            WorldWind.OFFSET_FRACTION, 0.5);
+                        placemarkAttributes.imageColor = WorldWind.Color.WHITE;
+
+                        // Create the custom image for the placemark.
+
+                        var canvas = document.createElement("canvas"),
+                            ctx2d = canvas.getContext("2d"),
+                            width = 500, height = 100, cwidth = width / 2, cheight = height / 2;
+
+                        canvas.width = width;
+                        canvas.height = height;
+
+                        ctx2d.fillStyle = markerColor;
+                        ctx2d.rect(cwidth, cheight, width, height);
+                        ctx2d.fill();
+
+                        ctx2d.font = "15px Lato";
+                        ctx2d.fillStyle = "black";
+                        ctx2d.textAlign = "center";
+                        ctx2d.fillText(markerText, cwidth + cwidth/2, cheight + cheight/2);
+
+                        // Create the placemark.
+                        placemark = new WorldWind.Placemark(new WorldWind.Position(latitude, longitude, 1e2), false, null);
+                        placemark.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
+
+                  // Create the placemark attributes for the placemark.
+                  placemarkAttributes = new WorldWind.PlacemarkAttributes(placemarkAttributes);
+                  // Wrap the canvas created above in an ImageSource object to specify it as the placemark image source.
+                  placemarkAttributes.imageSource = new WorldWind.ImageSource(canvas);
+                  placemark.attributes = placemarkAttributes;
+
+                  // Create the highlight attributes for this placemark. Note that the normal attributes are specified as
+                  // the default highlight attributes so that all properties are identical except the image scale. You could
+                  // instead vary the color, image, or other property to control the highlight representation.
+                  highlightAttributes = new WorldWind.PlacemarkAttributes(placemarkAttributes);
+                  highlightAttributes.imageScale = 1.2;
+                  placemark.highlightAttributes = highlightAttributes;
+
+                  // Add the placemark to the layer.
+                  placemarkLayer.addRenderable(placemark);
+
+                  // Add the placemarks layer to the World Window's layer list.
+                  wwd.addLayer(placemarkLayer);
+
+                  // Now set up to handle highlighting.
+                  var highlightController = new WorldWind.HighlightController(wwd);
+
+
+            }
 
 
  function loadData(){
@@ -848,6 +976,11 @@ function validation(){
               var report = [];
               report = ReportCalc(Energies,Ps);
               console.log(report);
+
+              var Psum = Ptot(Ps);
+              var Nsum = Ptot(Energies);
+
+              mapWithMarker(lat,long,Psum,Nsum);
 
               var chartButton = document.getElementById("chartButton");
               chartButton.addEventListener("click", ChartShow(Ps,report));

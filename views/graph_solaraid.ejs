@@ -1,6 +1,8 @@
 <head>
 <title>Results</title>
+<link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
 <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+<link rel='stylesheet' href='/stylesheets/style.css' />
 <link rel='stylesheet' href='/stylesheets/chartstyle.css' />
 </head>
 <body onload="StartPs()" style="background:url(../images/back_solaraid.png); background-size:cover; font-family:Lato,sans-serif;">
@@ -11,7 +13,7 @@
         </div>
 
     <div id="Report" style="width:30vw; color:#fff; position:absolute; right:0; top:0; height:100%; background:transparent; padding:25px; box-sizing:border-box;">
-    <h2>How you would contribute if you donate <div id="donation"></div>*</h2>
+    <h2>How you would contribute if you donated <div id="donation"></div></h2>
 
     <div id="light" class="lines"></div>
     <div id="hours" class="lines">hours of light added per day**</div>
@@ -22,7 +24,7 @@
     <div id="healthy" class="lines"></div>
 
     <div id="notes">
-    *Values estimated considering as the <a href="https://www.lightingglobal.org/products/glp-skpico/">Sun King Pico light</a> was given to the family <br>
+    *Values estimated considering as the <a href="https://www.lightingglobal.org/products/glp-skpico/" target="_blank">Sun King Pico light</a> was given to the family <br>
     **The added hours of light are thought to be the result of using the donated lights one at a time.
     </div>
     </div>
@@ -35,7 +37,7 @@
      <script src='/javascripts/Chart.js'></script>
 
      <script>
-     document.getElementById('donation').innerHTML = donation + "£";
+     document.getElementById('donation').innerHTML = donation + "£*";
      document.getElementById('light').innerHTML = "<b>" + solar_light + "</b>" + " lights" ;
      document.getElementById('people').innerHTML = "<b>" + people_reached + "</b>" + " people reached by light";
      document.getElementById('money').innerHTML = "<b>" + money_saved + "</b>" + "£ saved per family";

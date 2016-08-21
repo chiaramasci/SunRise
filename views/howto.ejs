@@ -5,11 +5,19 @@
     <link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+
+    <script src='/javascripts/wow.min.js'></script>
+        <link rel='stylesheet' href='/stylesheets/animate.css' />
+        <script>
+          new WOW().init();
+         </script>
   </head>
   <body>
   <%include templates/header.ejs%>
 
-     <div class="parallax" style="height:100vh;"></div>
+     <div class="parallax" style="height:100vh; background-image:url(../images/help.jpg);">
+     <%include templates/scrollino.ejs%>
+     </div>
         <div class="band">
         <h2>Help</h2>
         <p>In this page you can have more information about the required parameters
@@ -62,16 +70,17 @@
         This value is necessary to evaluate the reflection coefficient, the darker the surface is, the lower the coefficient is.</p>
         </div>
 
-        <div class="parallax" style="background-image:url(../images/parallax13.png);" id="type"></div>
+        <div class="parallax" style="background-image:url(../images/parallax13.jpg);" id="type"></div>
         <div class="band" >
         <h3>Type</h3>
         <p>
-        The type of photovoltaic system has to be specified among these ones:<br>
+        The type of photovoltaic system has to be specified among these ones:</p>
         <ul>
         <li>C-Si: Crystalline Silicon (1st and 2nd image)</li>
         <li>CdTE: Cadmium telluride (3rd image)</li>
         <li>CIS/CIGS: Copper Indium Selenide / Copper Indium Gallium Selenide (4th image)</li>
         </ul>
+        <p>
         The first type includes both the mono-crystalline and the poly-crystalline. As they both are thin film photovoltaic panels, the last two types have very similar appearances.
         </p>
         </div>
@@ -79,8 +88,8 @@
         <div class="parallax" style="background-image:url(../images/parallax4.jpg);" id="kwp"></div>
         <div class="band" >
         <h3>Peak Power</h3>
-        <p>The Peak Power (expressed in kwp) is ...<br>
-        If you don't know it, you can calculate it from the area of your modules and the efficiency<br>
+        <p>The Peak Power (expressed in kwp) is the declared power produced when there is 1000W per square meter of sun radiation on the system and the temperature is 25°C <br>
+        If you don't know this value, you can calculate it multiplying the area of your modules for their efficiency<br>
         </p>
         </div>
 
@@ -98,7 +107,7 @@
         <p>The energy needed per month in watt-hours has to be inserted for each month.</p>
         </div>
 
-        <div class="parallax" style="background-image:url(../images/back_solaraid.png);" id="location_africa"></div>
+        <div class="parallax" style="background-image:url(../images/back_solaraid.jpg);" id="location_africa"></div>
         <div class="band">
         <h3>Location (Solaraid)</h3>
         <p>Here the location of the donation has to be inserted. To begin with, select the state from the dropdown menu (if missing select "Global"),
@@ -109,7 +118,7 @@
         <li>Kenya: latitude 1, longitude 38</li>
         <li>Malawi: latitude -13.50, longitude 34</li>
         <li>Zambia: latitude -15, longitude 30</li>
-        <li>Tanzania: latitude -6, longitude 35</li
+        <li>Tanzania: latitude -6, longitude 35</li>
         </ul>
 
         </p>
@@ -122,10 +131,12 @@
         This has to be done only if "Global" is selected in the location field.</p>
         </div>
 
-        <div class="parallax" style="background-image:url(../images/parallax4.jpg);" id="donation"></div>
+        <div class="parallax" style="background-image:url(../images/donation.jpg);" id="donation"></div>
         <div class="band">
         <h3>Donation</h3>
-        <p>The donation in pounds has to be inserted in this field. <br>Remember that to do the effective donation you have to go on <a href="http://www.solar-aid.org/" target="_blank">SolarAid website</a></p>
+        <p>The donation in pounds has to be inserted in this field. <br>
+        If you need to convert your currency into pounds, go to this <a href="http://www.xe.com/it/currencyconverter/" target="_blank">link</a><br>
+        Remember that to do the effective donation you have to go on <a href="http://www.solar-aid.org/" target="_blank">SolarAid website</a></p>
         </div>
   </body>
 </html>

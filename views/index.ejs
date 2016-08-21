@@ -6,6 +6,12 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/index_style.css' />
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+
+    <script src='/javascripts/wow.min.js'></script>
+    <link rel='stylesheet' href='/stylesheets/animate.css' />
+    <script>
+      new WOW().init();
+     </script>
   </head>
   <body>
 
@@ -15,12 +21,21 @@
         <div class="caption">
             <span class="caption_text">For a shining future</span>
         </div>
+
+        <%include templates/scrollino.ejs%>
     </div>
     <div class="band">
-    <h2>Our Mission</h2>
-    <p>Lorem Ipsum djkdkdfkjdfkjdfjkdfjkdfjkdjkdfjkfd</p>
+    <h2 class="wow fadeIn">Our Mission</h2>
+    <p class="wow fadeIn" data-wow-delay="0.5s">There are many ways to be more green and to preserve our world. <br>
+    If we want to have a cleaner world and a more sustainable lifestyle we have to invest in clean and <b>renewable energy.</b> <br>
+    With our app we wish to <b>promote solar energy,</b> which is free and does not compromise the environment, our health and climate. <br>
+    Nevertheless, solar energy is inexhaustible. <br>
+    For all these reasons solar energy should become the primary form of energy:
+    this could bring to a <b>cleaner</b> environment and a healthier world. <br>
+    Solar energy is the key to allow technology and nature to co-exist peacefully. <br>
+    We guess that solar energy will be affordable and <b>available everywhere</b> in the world for generations to come.</p>
 
-        <div class="linkBox">
+        <div class="linkBox wow fadeIn" data-wow-delay="0.5s">
             <a href="/about" class="button" style="margin-left:-62.5px">READ MORE</a>
         </div>
     </div>
@@ -31,13 +46,13 @@
             </div>
     </div>
     <div class="band">
-    <h2>For companies</h2>
-    <p>The clean energy obtained thanks to the sun is a great <b>resource.</b> <br>For this reason it is important knowing how to use it <b>intelligently</b> in order to avoid its waste. <br>
+    <h2 class="wow fadeIn">For companies</h2>
+    <p class="wow fadeIn">The clean energy obtained thanks to the sun is a great <b>resource.</b> <br>For this reason it is important knowing how to use it <b>intelligently</b> in order to avoid its waste. <br>
        Sunrise allows you to <b>optimize</b> the output of home or company Pv systems.<br>
        Inserting some data such as position and some features of the system, <br>the app estimates energy max monthly output, and compares it to your real needs, with a consequent economy.<br>
        By now the app includes Italian areas.</p>
 
-        <div class="linkBox">
+        <div class="linkBox fadeIn" data-wow-delay="0.5s">
             <a href="/calculate" class="button" style="margin-left: -61px;">CALCULATE</a>
         </div>
     </div>
@@ -48,26 +63,28 @@
         </div>
     </div>
     <div class="band">
-    <h2>For Africa</h2>
-    <p>Solar energy is a great <b>opportunity</b> for those areas where electrical facilities are not available.<br>
+    <h2 class="wow fadeIn">For Africa</h2>
+    <p class="wow fadeIn">Solar energy is a great <b>opportunity</b> for those areas where electrical facilities are not available.<br>
        Many association give the possibility to <b>donate</b> Pv lamps.<br>
        Sunrise, substaining <a href="http://www.solar-aid.org/" target="_blank">SolarAid,</a> gives the possibility to have a real time view of the return of the light donation, estimated in light hours produced by the donation.<br>
        In this way the donor can realize how important is the ethical contribution, in order to give a <b>new sunrise</b> to those who still live in the dark. </p>
 
-       <div class="linkBox">
+       <div class="linkBox wow fadeIn" data-wow-delay="0.5s">
             <a href="/solaraid" class="button" style="margin-left:-162px;">HOW MUCH LIGHT CAN YOU DONATE?</a>
         </div>
     </div>
 
     <div class="parallax" style="background-image:url(images/parallax4.jpg);"></div>
     <div class="band">
-    <h2>Contacts</h2>
-    <p><b>Chiara Masci</b> <a href="mailto:studente.chiara.masci@pavoniani.tn.it">studente.chiara.masci@pavoniani.tn.it</a>
-       <b>Marcus Vukojevic</b> <a href="mailto:marcusvuk@gmail.com">marcusvuk@gmail.com</a>
-       <b>Sabrina Rungaldier</b> <a href="mailto:sabri.rng97@gmail.com">sabri.rng97@gmail.com</a>
-       <b>Thomas Zulian</b> <a href="mailto:thomas.zulian@gmail.com">thomas.zulian@gmail.com</a></p>
+    <h2 class="wow fadeIn">Contacts</h2>
+    <ul class="wow fadeIn">
+       <li><b>Chiara Masci</b> <a href="mailto:studente.chiara.masci@pavoniani.tn.it" style="text-transform:lowercase;">studente.chiara.masci@pavoniani.tn.it</a></li>
+       <li><b>Marcus Vukojevic</b> <a href="mailto:marcusvuk@gmail.com" style="text-transform:lowercase;">marcusvuk@gmail.com</a></li>
+       <li><b>Sabrina Rungaldier</b> <a href="mailto:sabri.rng97@gmail.com" style="text-transform:lowercase;">sabri.rng97@gmail.com</a></li>
+       <li><b>Thomas Zulian</b> <a href="mailto:thomas.zulian@gmail.com" style="text-transform:lowercase;">thomas.zulian@gmail.com</a></li>
+    </ul>
 
-       <div class="linkBox">
+       <div class="linkBox" >
             <a href="/about" class="button" style="margin-left:-101.5px">MORE INFO ABOUT US</a>
         </div>
     </div>

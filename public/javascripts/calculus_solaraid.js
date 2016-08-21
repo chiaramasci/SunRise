@@ -458,7 +458,7 @@ function validation(){
             return P;}
 
       function LampLightCalc(HofAllMonths, solar_light){
-            var W = 12; //CASO
+            var W = 0.88;
             var lamp_kwh = W / 1000; //kwh
             var AH = 0.47;
             var V = 3.2;

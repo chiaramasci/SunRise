@@ -5,15 +5,23 @@
     <link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+
+    <script src='/javascripts/wow.min.js'></script>
+        <link rel='stylesheet' href='/stylesheets/animate.css' />
+        <script>
+          new WOW().init();
+         </script>
   </head>
   <body>
     <%include templates/header.ejs%>
 
-    <div class="parallax" style="height:100vh;background-image:url(images/parallax5.jpg);"></div>
+    <div class="parallax" style="height:100vh;background-image:url(images/parallax5.jpg);">
+    <%include templates/scrollino.ejs%>
+    </div>
     <div class="band">
-    <h2>About</h2>
-    <p>SunRise is an <b>open source</b> software that shows how solar energy can contribute both for the developed countries and for the undeveloped ones.<br>
-    It consists of two subapplications: <a href="/calculation" target="_blank">Companies</a> and <a href="/solaraid" target="_blank">SolarAid</a><br>
+    <h2 class="wow fadeIn">About</h2>
+    <p class="wow fadeIn">SunRise is an <b>open source</b> software that shows how solar energy can contribute both for the developed countries and for the undeveloped ones.<br>
+    It consists of two subapplications: <a href="/calculation" target="_blank">Companies</a> and <a href="/solaraid" target="_blank">Africa</a><br>
     <b>Companies</b> finds whether there is the necessity of optimizing the use of solar energy of a given company basing on the Pv system features and on the monthly electrical need.<br>
     <b>SolarAid</b> gives an idea to the donor to <a href="http://www.solar-aid.org/" target="_blank">SolarAid</a> of how much his donation would contribute in the African people's lives.<br>
     The repository on Github is on this <a href="https://github.com/chiaramasci/SunRise" target="_blank">link</a></p>
@@ -25,17 +33,16 @@
         </div>
     </div>
     <div class="band" style="overflow:auto;">
-    <h2>The team</h2>
-    <p>Our <b>passionate</b> team</p>
+    <h2 class="wow fadeIn">The team</h2>
+    <p class="wow fadeIn">Our <b>passionate</b> team</p>
 
-        <div class="boxone">
-            <div class="box">
-                <img>
+        <div class="boxone" >
+            <div class="box wow fadeIn" data-wow-delay="0.25s">
                 <h3 class="name">Chiara Masci</h3>
                 <p class="role">developer</p>
                 <p class="wid">
-                    I attend the Istituto Pavoniano Artigianelli school for Graphic Arts and Design.<br>
-                    I am passionate about coding, physics and math.
+                    I attend the <b>Istituto Pavoniano Artigianelli school for Graphic Arts and Design.</b><br>
+                    I have been in the <b>WebValley</b> summer school organized by FBK as I am very passionate about <b>coding, physics</b> and <b>math.</b>
                 </p>
 
                  <div class="linkBox">
@@ -43,13 +50,14 @@
                 </div>
             </div>
 
-            <div class="box">
-                <img>
+            <div class="box wow fadeIn" data-wow-delay="0.5s">
                 <h3 class="name">Marcus Vukojevic</h3>
                 <p class="role">marketing</p>
                 <p class="wid">
-                    I attend the Istituto Pavoniano Artigianelli school for Graphic Arts and Design.<br>
-                                        I am passionate about coding, physics and math.
+                    I’m a student of the <b>Ladin High School</b> in Pozza di Fassa. <br>
+                    I’ve been in Poland for the <b>Startify7</b> program launched by the European commission. <br>
+                    The main topic was business planning and I’m really interested in that. <br>
+                    I love <b>astrophysics,</b> creating new useful things and being <b>innovative.</b>
                 </p>
 
                  <div class="linkBox">
@@ -57,8 +65,7 @@
                  </div>
             </div>
 
-            <div class="box">
-                <img>
+            <div class="box wow fadeIn" data-wow-delay="0.75s">
                 <h3 class="name">Sabrina Rungaldier</h3>
                 <p class="role">video maker</p>
                 <p class="wid">
@@ -71,14 +78,13 @@
                  </div>
             </div>
 
-            <div class="box">
-                <img>
+            <div class="box wow fadeIn" data-wow-delay="1s">
                 <h3 class="name">Thomas Zulian</h3>
                 <p class="role">mentor</p>
                 <p class="wid">
-                    I'm a Math teacher in the Ladin High School of Pozza di Fassa. <br>
-                    I have been working in the school for 8 years, in which I tried to offer to my students  interesting projects about robots, scientific shows, health and theater. <br>
-                    I like science, nature, sport and fun.
+                    I'm a <b>Math teacher</b> in the <b>Ladin High School</b> of Pozza di Fassa. <br>
+                    I have been working in the school for 8 years, in which I tried to offer to my students <b>interesting projects</b> about robots, scientific shows, health and theater. <br>
+                    I like <b>science, nature, sport</b> and <b>fun.</b>
                 </p>
 
                 <div class="linkBox">
@@ -93,15 +99,49 @@
             <span class="caption_text">Do you want to make a change? <b>Collaborate</b></span>
         </div>
     </div>
-    <div class="band">
-    <h2>Collaborations</h2>
-    <p>Lorem Ipsum djkdkdfkjdfkjdfjkdfjkdfjkdjkdfjkfd</p>
+    <div class="band" style="overflow:auto;">
+    <h2 class="wow fadeIn">Collaborations</h2>
+    <p class="wow fadeIn" >Our <b>cooperative</b> helpers</p>
+
+    <div class="boxone wow fadeIn">
+        <div class="box" style="width:20%;">
+            <a href="http://www.ecogriddy.com/" target="_blank">
+                <img src="/images/ecogriddy.png" style="margin-top: 20px;">
+            </a>
+        </div>
+
+        <div class="box" style="width:20%;">
+            <a href="http://www.enea.it/" target="_blank">
+                <img src="/images/enea.png" width="114" style="margin-top: 25px;">
+            </a>
+        </div>
+
+        <div class="box" style="width:20%;">
+            <a href="http://ec.europa.eu/jrc/en" target="_blank">
+                <img src="/images/jrc.png" width="130">
+            </a>
+        </div>
+
+        <div class="box" style="width:20%;">
+            <a href="http://www.solar-aid.org/" target="_blank">
+                <img src="/images/solaraid.png" width="102">
+            </a>
+        </div>
+
+         <div class="box" style="width:20%;">
+            <a href="http://www.greenlightplanet.com/" target="_blank">
+                <img src="/images/greenlight.png" width="180" style="margin-top: 13px;">
+            </a>
+         </div>
+    </div>
     </div>
 
     <div class="parallax" style="background-image:url(images/parallax8.png);"></div>
     <div class="band">
-    <h2>Credits</h2>
-    <p>Lorem Ipsum djkdkdfkjdfkjdfjkdfjkdfjkdjkdfjkfd</p>
+    <h2 class="wow fadeIn">Credits</h2>
+    <p>Dati della radiazione solare dell’ENEA – Dipartimento Tecnologie Energetiche – Divisione Solare termico e Termodinamico – Centro Ricerche Casaccia (RM) <br>
+    African global solar irradiance data from the Joint Research Centre of the European Commission<br>
+    Free images from pixabay.com, www.pexels.com</p>
     </div>
   </body>
 </html>

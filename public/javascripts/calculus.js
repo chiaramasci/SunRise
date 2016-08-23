@@ -19,9 +19,6 @@ var long = 12;
         // Add some image layers to the World Window's globe.
         wwd.addLayer(new WorldWind.BMNGOneImageLayer());
         wwd.addLayer(new WorldWind.BingAerialWithLabelsLayer());
-
-        // Add a compass, a coordinates display and some view controls to the World Window.
-        wwd.addLayer(new WorldWind.CompassLayer());
         wwd.addLayer(new WorldWind.CoordinatesDisplayLayer(wwd));
         wwd.addLayer(new WorldWind.ViewControlsLayer(wwd));
 
@@ -691,38 +688,53 @@ function validation(){
                           ctxsq1 = square1.getContext("2d"),
                           size = 65, c = size / 2;
 
-                      square1.width = size;
+                      square1.width = size * 10;
                       square1.height = size * 7;
 
                       ctxsq1.beginPath();
+                      ctxsq1.fillStyle = "rgba(255,255,255,0.7)";
+                      ctxsq1.rect(0,0,c*12,c*8);
+                      ctxsq1.fill();
+
+                      ctxsq1.beginPath();
                       ctxsq1.fillStyle = "#8bc47b";
-                      ctxsq1.rect(c, c, size, size);
+                      ctxsq1.rect(c, c, c, c);
                       ctxsq1.fill();
 
                       ctxsq1.beginPath();
                       ctxsq1.fillStyle = "#9eb06e";
-                      ctxsq1.rect(c, c*2, size, 65/2);
+                      ctxsq1.rect(c, c*2, c, c);
                       ctxsq1.fill();
 
                       ctxsq1.beginPath();
                       ctxsq1.fillStyle = "#ab9861";
-                      ctxsq1.rect(c, c*3, size, 65/2);
+                      ctxsq1.rect(c, c*3, c, c);
                       ctxsq1.fill();
 
                       ctxsq1.beginPath();
                       ctxsq1.fillStyle = "#b47b52";
-                      ctxsq1.rect(c, c*4, size, 65/2);
+                      ctxsq1.rect(c, c*4, c, c);
                       ctxsq1.fill();
 
                       ctxsq1.beginPath();
                       ctxsq1.fillStyle = "#bb5945";
-                      ctxsq1.rect(c, c*5, size, 65/2);
+                      ctxsq1.rect(c, c*5, c, c);
                       ctxsq1.fill();
 
                       ctxsq1.beginPath();
                       ctxsq1.fillStyle = "#bf3137";
-                      ctxsq1.rect(c, c*6, size, 65/2);
+                      ctxsq1.rect(c, c*6, c, c);
                       ctxsq1.fill();
+
+                      ctxsq1.font = "12px Lato";
+                      ctxsq1.fillStyle = "black";
+                      ctxsq1.textAlign = "left";
+                      ctxsq1.fillText("production > 200% of the need", c*3, c + c/2);
+                      ctxsq1.fillText("production over 150% but least of 200% of the need", c*3, c * 2 + c/2);
+                      ctxsq1.fillText("production over 100% but least of 150% of the need", c*3, c * 3 + c/2);
+                      ctxsq1.fillText("production over 50% but least of 100% of the need", c*3, c * 4 + c/2);
+                      ctxsq1.fillText("production over 0% but least of 50% of the need", c*3, c * 5 + c/2);
+                      ctxsq1.fillText("production = 0", c*3, c * 6 + c/2);
 
                       // Create the screen image and place it in the upper-left corner.
                       screenOffset = new WorldWind.Offset(WorldWind.OFFSET_FRACTION, 0, WorldWind.OFFSET_FRACTION, 1);

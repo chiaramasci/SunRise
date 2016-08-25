@@ -1,60 +1,148 @@
-//LOADING WEB WORLD WIND
-var send = document.getElementById('chartButton');
-
-     // Register an event listener to be called when the page is loaded.
-    window.addEventListener("load", eventWindowLoaded, false);
+window.addEventListener("load", eventWindowLoaded, false);
 var lat = 42.51;
 var long = 12;
-    // Define the event listener to initialize Web World Wind.
-    function eventWindowLoaded() {
-        // Create a World Window for the canvas.
-        var wwd = new WorldWind.WorldWindow("map");
-
-         //initial position
-       wwd.navigator.lookAtLocation.latitude = lat;
-        wwd.navigator.lookAtLocation.longitude = long;
-        wwd.navigator.range = 17e5; //200 000 meters
 
 
-        // Add some image layers to the World Window's globe.
-        wwd.addLayer(new WorldWind.BMNGOneImageLayer());
-        wwd.addLayer(new WorldWind.BingAerialWithLabelsLayer());
-        wwd.addLayer(new WorldWind.CoordinatesDisplayLayer(wwd));
-        wwd.addLayer(new WorldWind.ViewControlsLayer(wwd));
+function eventWindowLoaded() {
+    /*
+     VARIABLES
+     ----------
+        lat : float
+        It is the initial latitude of World Wind
 
-    }
+        long : float
+        It is the initial latitude of World Wind
+
+
+     FUNCTION
+     --------
+        It creates World Wind in the given canvas
+
+     RETURNS
+     -------
+
+     */
+
+    // Create a World Window for the canvas.
+    var wwd = new WorldWind.WorldWindow("map");
+
+     //initial position
+    wwd.navigator.lookAtLocation.latitude = lat;
+    wwd.navigator.lookAtLocation.longitude = long;
+    wwd.navigator.range = 17e5; //200 000 meters
+
+    // Add some image layers to the World Window's globe.
+    wwd.addLayer(new WorldWind.BMNGOneImageLayer());
+    wwd.addLayer(new WorldWind.BingAerialWithLabelsLayer());
+    wwd.addLayer(new WorldWind.CoordinatesDisplayLayer(wwd));
+    wwd.addLayer(new WorldWind.ViewControlsLayer(wwd));
+}
 
 
 //VARIABLES
-    //errors
-    var error_space = document.getElementById("errors");
-
-    //user's
-
-
-    //initial
-    var latitudes = [48,47,46,45,44,43,42,41,40,39,38,37,36,35];
-    var longitudes = [6,7,8,9,10,11,12,13,14,15,16,17,18,19];
-    var n_days = [31,28,31,30,31,30,31,31,30,31,30,31];
-    var Tambs = [25,25,25,25,25,25,25,25,25,25,25,25];//FAKISSIMO
+    var error_space = document.getElementById("errors"); //it is the div where the errors of the function 'validation' are output
+    var latitudes = [48,47,46,45,44,43,42,41,40,39,38,37,36,35]; //these are the integer latitudes of Italy. The list starts with the northern one and ends with the southest
+    var longitudes = [6,7,8,9,10,11,12,13,14,15,16,17,18,19];   //these are the integer longitudes of Italy. The list starts with the western one and ends with the eastern one
+    var n_days = [31,28,31,30,31,30,31,31,30,31,30,31]; //these are the number of days per each month
+    //var Tambs = [25,25,25,25,25,25,25,25,25,25,25,25];
 
 function sinDeg (deg){
+/*
+     PARAMETERS
+     ----------
+     deg : int or float
+     It is the angle in degrees
+
+     FUNCTION
+     --------
+     It calculates the sin of an angle in degrees after converting it in radians
+
+     RETURNS
+     -------
+     Math.sin(rad) : float
+     The sin of the angle
+     */
+
     var rad = deg * Math.PI/180;
     return Math.sin(rad);}
 
 function cosDeg (deg){
+/*
+     PARAMETERS
+     ----------
+     deg : int or float
+     It is the angle in degrees
+
+     FUNCTION
+     --------
+     It calculates the cos of an angle in degrees after converting it in radians
+
+     RETURNS
+     -------
+     Math.cos(rad) : float
+     The cos of the angle
+     */
+
     var rad = deg * Math.PI/180;
     return Math.cos(rad);}
 
 function tanDeg (deg){
+/*
+     PARAMETERS
+     ----------
+     deg : int or float
+     It is the angle in degrees
+
+     FUNCTION
+     --------
+     It calculates the tan of an angle in degrees after converting it in radians
+
+     RETURNS
+     -------
+     Math.tan(rad) : float
+     The tan of the angle
+     */
+
     var rad = deg * Math.PI/180;
     return Math.tan(rad);}
 
 function acosDeg(cos){
+/*
+     PARAMETERS
+     ----------
+     cos : int or float
+     It is the cos of an angle
+
+     FUNCTION
+     --------
+     It finds the angle in degrees from cos
+
+     RETURNS
+     -------
+     rad * 180/Math.PI : float
+     The angle in degrees
+     */
+
     var rad = Math.acos(cos);
     return rad * 180/Math.PI;}
 
 function atanDeg(tan){
+/*
+     PARAMETERS
+     ----------
+     tan : int or float
+     It is the tan of an angle
+
+     FUNCTION
+     --------
+     It finds the angle in degrees from tan
+
+     RETURNS
+     -------
+     rad * 180/Math.PI : float
+     The angle in degrees
+     */
+
     var rad = Math.atan(tan);
     return rad * 180/Math.PI;}
 
@@ -67,7 +155,7 @@ function validation(){
 
      FUNCTION
      --------
-     It checks if the input data is valid.
+     It checks if the input data of the user is valid.
      If it is valid, it runs calculation() which executes the calculation
 
      RETURNS
@@ -75,90 +163,152 @@ function validation(){
      nothing
      */
 
-    var lat = document.user_inputs.lat.value;
-    var long = document.user_inputs.long.value;
-    var tilt = document.user_inputs.tilt.value;
-    var azimuth = document.user_inputs.azimuth.value;
-    var corifl = document.user_inputs.corifl.value;
-    var solar_type = document.user_inputs.type.value;
-    var kwp = document.user_inputs.kwp.value;
-    var standing = document.user_inputs.standing.value;
+    var lat = document.user_inputs.lat.value; //taking the latitude inserted in the form 'user_inputs'
+    var long = document.user_inputs.long.value; //taking the longitude inserted in the form 'user_inputs'
+    var tilt = document.user_inputs.tilt.value; //taking the tilt inserted in the form 'user_inputs'
+    var azimuth = document.user_inputs.azimuth.value; //taking the orientation angle inserted in the form 'user_inputs'
+    var corifl = document.user_inputs.corifl.value; //taking the coefficient of reflection from the surface selected in the form 'user_inputs'
+    var solar_type = document.user_inputs.type.value; //taking the type of PV selected in the form 'user_inputs'
+    var kwp = document.user_inputs.kwp.value; //taking the kwp inserted in the form 'user_inputs'
+    var standing = document.user_inputs.standing.value; //taking the the standing way of the PV selected in the form 'user_inputs'
 
-     var energy1 = document.user_inputs.energy1.value;
-     var energy2 = document.user_inputs.energy2.value;
-     var energy3 = document.user_inputs.energy3.value;
-     var energy4 = document.user_inputs.energy4.value;
-     var energy5 = document.user_inputs.energy5.value;
-     var energy6 = document.user_inputs.energy6.value;
-     var energy7 = document.user_inputs.energy7.value;
-     var energy8 = document.user_inputs.energy8.value;
-     var energy9 = document.user_inputs.energy9.value;
-     var energy10 = document.user_inputs.energy10.value;
-     var energy11 = document.user_inputs.energy11.value;
-     var energy12 = document.user_inputs.energy12.value;
+     var energy1 = document.user_inputs.energy1.value; //taking the energy needed in January from the form 'user_inputs'
+     var energy2 = document.user_inputs.energy2.value; //taking the energy needed in February from the form 'user_inputs'
+     var energy3 = document.user_inputs.energy3.value; //taking the energy needed in March from the form 'user_inputs'
+     var energy4 = document.user_inputs.energy4.value; //taking the energy needed in April from the form 'user_inputs'
+     var energy5 = document.user_inputs.energy5.value; //taking the energy needed in May from the form 'user_inputs'
+     var energy6 = document.user_inputs.energy6.value; //taking the energy needed in June from the form 'user_inputs'
+     var energy7 = document.user_inputs.energy7.value; //taking the energy needed in July from the form 'user_inputs'
+     var energy8 = document.user_inputs.energy8.value; //taking the energy needed in August from the form 'user_inputs'
+     var energy9 = document.user_inputs.energy9.value; //taking the energy needed in September from the form 'user_inputs'
+     var energy10 = document.user_inputs.energy10.value; //taking the energy needed in October from the form 'user_inputs'
+     var energy11 = document.user_inputs.energy11.value; //taking the energy needed in November from the form 'user_inputs'
+     var energy12 = document.user_inputs.energy12.value; //taking the energy needed in December from the form 'user_inputs'
 
 
     if ((lat == "") || (lat == "undefined") || isNaN(lat) || tilt < 0) {
-       error_space.innerHTML = "Inserire latitudine in numeri decimali";
+       error_space.innerHTML = "Insert latitude in decimal degrees";
        document.user_inputs.lat.focus();
        return false;
     }
 
     if ((long == "") || (long == "undefined") || isNaN(long) || long < 0) {
-           error_space.innerHTML = "Inserire longitudine in numeri decimali";
+           error_space.innerHTML = "Insert longitude in decimal degrees";
            document.user_inputs.long.focus();
            return false;
         }
 
     if ((tilt == "") || (tilt == "undefined") || isNaN(tilt) || tilt > 90 || tilt < 0) {
-               error_space.innerHTML = "Inserire inclinazione";
+               error_space.innerHTML = "Insert inclination angle. Omit '°'";
                document.user_inputs.tilt.focus();
                return false;
             }
 
     if ((azimuth == "") || (azimuth == "undefined") || isNaN(azimuth) || azimuth > 90 || azimuth < -90) {
-                   error_space.innerHTML = "Inserire orientamento tra +90 e -90";
+                   error_space.innerHTML = "Insert orientation angle. The value has to be from +90 to -90. Omit '°'";
                    document.user_inputs.azimuth.focus();
                    return false;
                 }
 
     if ((corifl == "") || (corifl == "undefined") || isNaN(corifl) || corifl > 1 || corifl < 0) {
-                       error_space.innerHTML = "Inserire piano di appoggio";
+                       error_space.innerHTML = "Select the surface";
                        document.user_inputs.corifl.focus();
                        return false;
                     }
 
     if ((solar_type == "") || (solar_type == "undefined")) {
-                           error_space.innerHTML = "Inserire tipo";
+                           error_space.innerHTML = "Select the type of PV modules";
                            document.user_inputs.type.focus();
                            return false;
                         }
 
     if ((kwp == "") || (kwp == "undefined") || isNaN(corifl)) {
-                           error_space.innerHTML = "Inserire kwp";
+                           error_space.innerHTML = "Insert kwp";
                            document.user_inputs.kwp.focus();
                            return false;
                         }
 
     if ((standing == "") || (standing == "undefined")) {
-                               error_space.innerHTML = "Inserire standing";
+                               error_space.innerHTML = "Select how it is mounted";
                                document.user_inputs.standing.focus();
                                return false;
                             }
 
-    if ((energy1 == "") || (energy1 == "undefined") || isNaN(energy1) || energy1 < 0) {
-               error_space.innerHTML = "Inserire longitudine in numeri decimali";
+    if ((energy1 == "") || (energy1 == "undefined") || isNaN(energy1) || energy1 <= 0) {
+               error_space.innerHTML = "Insert value higher than 0 of the energy needed";
                document.user_inputs.energy1.focus();
                return false;
             }
 
-    if ((energy2 == "") || (energy2 == "undefined") || isNaN(energy2) || energy2 < 0) {
-                   error_space.innerHTML = "Inserire longitudine in numeri decimali";
-                   document.user_inputs.energy1.focus();
+    if ((energy2 == "") || (energy2 == "undefined") || isNaN(energy2) || energy2 <= 0) {
+                   error_space.innerHTML = "Insert value higher than 0 of the energy needed";
+                   document.user_inputs.energy2.focus();
                    return false;
                 }
 
-    else{
+    if ((energy3 == "") || (energy3 == "undefined") || isNaN(energy3) || energy3 <= 0) {
+                   error_space.innerHTML = "Insert value higher than 0 of the energy needed";
+                   document.user_inputs.energy3.focus();
+                   return false;
+                }
+
+    if ((energy4 == "") || (energy4 == "undefined") || isNaN(energy4) || energy4 <= 0) {
+                   error_space.innerHTML = "Insert value higher than 0 of the energy needed";
+                   document.user_inputs.energy4.focus();
+                   return false;
+                }
+
+    if ((energy5 == "") || (energy5 == "undefined") || isNaN(energy5) || energy5 <= 0) {
+                   error_space.innerHTML = "Insert value higher than 0 of the energy needed";
+                   document.user_inputs.energy5.focus();
+                   return false;
+                }
+
+    if ((energy6 == "") || (energy6 == "undefined") || isNaN(energy6) || energy6 <= 0) {
+                   error_space.innerHTML = "Insert value higher than 0 of the energy needed";
+                   document.user_inputs.energy6.focus();
+                   return false;
+                }
+
+    if ((energy7 == "") || (energy7 == "undefined") || isNaN(energy7) || energy7 <= 0) {
+                   error_space.innerHTML = "Insert value higher than 0 of the energy needed";
+                   document.user_inputs.energy7.focus();
+                   return false;
+                }
+
+
+    if ((energy8 == "") || (energy8 == "undefined") || isNaN(energy8) || energy8 <= 0) {
+                   error_space.innerHTML = "Insert value higher than 0 of the energy needed";
+                   document.user_inputs.energy8.focus();
+                   return false;
+                }
+
+    if ((energy9 == "") || (energy9 == "undefined") || isNaN(energy9) || energy9 <= 0) {
+                   error_space.innerHTML = "Insert value higher than 0 of the energy needed";
+                   document.user_inputs.energy9.focus();
+                   return false;
+                }
+
+    if ((energy10 == "") || (energy10 == "undefined") || isNaN(energy10) || energy10 <= 0) {
+                   error_space.innerHTML = "Insert value higher than 0 of the energy needed";
+                   document.user_inputs.energy10.focus();
+                   return false;
+                }
+
+    if ((energy11 == "") || (energy11 == "undefined") || isNaN(energy11) || energy11 <= 0) {
+                   error_space.innerHTML = "Insert value higher than 0 of the energy needed";
+                   document.user_inputs.energy11.focus();
+                   return false;
+                }
+
+    if ((energy12 == "") || (energy12 == "undefined") || isNaN(energy12) || energy12 <= 0) {
+                   error_space.innerHTML = "Insert value higher than 0 of the energy needed";
+                   document.user_inputs.energy12.focus();
+                   return false;
+                }
+
+
+    else{ //if the values are fine, the 'calculation' function is opened
     console.log("All perfect, let's go!");
     calculation();
     }
@@ -348,6 +498,23 @@ function validation(){
       }
 
       function JulianDaysExtract(solar_table){
+      /*
+           PARAMETERS
+           ----------
+              solar_table : file csv
+              it is the variable that represents the file in which the Julian Days are inserted
+
+           FUNCTION
+           --------
+              It extracts the Julian Days from the column 'giorno giuliano' (in English 'Julian Day')
+              and makes a list of them
+
+           RETURNS
+           -------
+              JulianDays : list
+              It is the list of the Julian Days
+           */
+
           JulianDays = [];
           for(i=0; i<12; i++){
           var JulianDay_month = solar_table[i]["giorno_giuliano"];
@@ -357,6 +524,22 @@ function validation(){
       }
 
       function solarDeclination (JulianDays){
+      /*
+             PARAMETERS
+             ----------
+                JulianDays : list
+                Contains the Julian Days
+
+             FUNCTION
+             --------
+                It calculates the solar declination in each Julian Day in the list
+
+             RETURNS
+             -------
+                solarDeclinations : list
+                It is the list of the solar declinations per each Julian Day in the list
+             */
+
           solarDeclinations = [];
           for(i=0; i<12; i++){
             var n = parseFloat(JulianDays[i]);
@@ -520,6 +703,21 @@ function validation(){
           }
 
       function costantsCalc(solar_type){
+      /*
+           PARAMETERS
+           ----------
+              solar_type : string
+              It is the pv type chosen by the user in the form 'user_inputs'
+
+           FUNCTION
+           --------
+              It creates a list of costants depending on the pv type
+
+           RETURNS
+           -------
+              constants : list
+              It is the list of the costants of the pv type
+           */
               var costants = [];
 
               switch(solar_type){
@@ -559,6 +757,21 @@ function validation(){
           }
 
       function K_tmCalc(standing){
+            /*
+              PARAMETERS
+              ----------
+                 standing : string
+                 It is the way the system stands chosen by the user in the form 'user_inputs'
+
+              FUNCTION
+              --------
+                 It finds the overheating costant depending on the mounting way
+
+              RETURNS
+              -------
+                 K_tm : float
+                 It is the overheating costant
+              */
             switch(standing){
                 case "free_standing":
                   var K_tm = 0.035;
@@ -570,8 +783,34 @@ function validation(){
           }
 
       function eff_relCalc(solar_type, Hincls, standing, Tambs){
+            /*
+              PARAMETERS
+              ----------
+                 solar_type : string
+                 It is the pv type chosen by the user in the form 'user_inputs'
+
+                 Hincls : list
+                 The list of solar irradiation on the tilted surface per each month
+
+                 standing : string
+                 It is the way the system stands chosen by the user in the form 'user_inputs'
+
+                 Tambs : list
+                 The list of daily average temperatures per each Julian Day
+
+              FUNCTION
+              --------
+                 It finds the efficiency of the pv system based on the pv type, the solar radiation on the tilted surface, the way the system is mounted and
+                 the ambient temperatures.
+
+              RETURNS
+              -------
+                 eff_rels : list
+                 The list of efficiency of the pv system per month
+              */
               var eff_rels = [];
-              var costants = costantsCalc(solar_type);
+
+              var costants = costantsCalc(solar_type); //it
               var k1 = costants[0];
               var k2 = costants[1];
               var k3 = costants[2];
@@ -598,6 +837,29 @@ function validation(){
           }
 
       function PCalc(Hincls, P_peak, eff_rels){
+      /*
+            PARAMETERS
+            ----------
+
+               Hincls : list
+               The list of solar irradiation on the tilted surface per each month
+
+               P_peak : float
+               It is the kwp inserted by the user in the form 'user_inputs'
+
+               eff_rels : list
+               The list of relative efficiency per each month
+
+            FUNCTION
+            --------
+               It calculates the output of the pv system per each month
+
+            RETURNS
+            -------
+               Ps : list
+               The list of output energy of the pv system per each month
+            */
+
       var Ps = [];
             for(i = 0; i < 12; i++){
             var Hincl = Hincls[i];
@@ -618,6 +880,23 @@ function validation(){
       }
 
       function Ptot(Ps){
+      /*
+          PARAMETERS
+          ----------
+
+             Ps : list
+             The list of output energy of the pv system per each month
+
+          FUNCTION
+          --------
+             It calculates the annual output, summing the monthly utput energies
+
+          RETURNS
+          -------
+             Psum : float
+             The annual energy of the pv system
+          */
+
         Psum = 0;
         console.log("starting list: " + Ps);
         for(i = 0; i < 12; i++){
@@ -627,6 +906,26 @@ function validation(){
         return Psum;}
 
       function ReportCalc(Energies,Ps){
+      /*
+        PARAMETERS
+        ----------
+
+           Energies : list
+           The list of the average needed energy per month
+
+           Ps : list
+           The list of the output of the pv system per month
+
+        FUNCTION
+        --------
+           It finds the difference between the demand and the output per each month
+
+        RETURNS
+        -------
+           report : list
+           List of the difference between the demand and the output per each month
+        */
+
         var report = []
         for (i = 0; i < 12; i++){
             var difference = Ps[i] - Energies[i];
@@ -635,6 +934,27 @@ function validation(){
         return report}
 
         function percentageProd(Psum,Nsum){
+        /*
+            PARAMETERS
+            ----------
+
+               Psum : float
+               Sum of the output of the pv system of each month
+
+               Nsum : float
+               Sum of the monthly energy needed of each month
+
+            FUNCTION
+            --------
+               It finds the color of the marker to use in World Wind depending on the
+               difference between the annual demand and the annual output
+
+            RETURNS
+            -------
+               markerColor : string
+               Color of the marker
+            */
+
         console.log(Nsum);
         var remains = Psum - Nsum;
         console.log(remains);
@@ -930,21 +1250,21 @@ function validation(){
               var temp_nov = interpolation(lat,long,x1,x2,y1,y2,temp_xy_nov);
               var temp_dec = interpolation(lat,long,x1,x2,y1,y2,temp_xy_dec);
 
+
               var HofAllMonths = [];
-              HofAllMonths.push(H_jan,H_feb,H_mar,H_apr,H_may,H_jun,H_jul,H_aug,H_sep,H_oct,H_nov,H_dec);
+              HofAllMonths.push(H_jan,H_feb,H_mar,H_apr,H_may,H_jun,H_jul,H_aug,H_sep,H_oct,H_nov,H_dec); //pushing variables of the irradiance of each month inside the same list
               console.log('Interpolation of solar irradiation completed :)');
 
               var Tambs = [];
-              Tambs.push(temp_jan,temp_feb,temp_mar,temp_apr,temp_may,temp_jun,temp_jul,temp_aug,temp_sep,temp_oct,temp_nov,temp_dec);
+              Tambs.push(temp_jan,temp_feb,temp_mar,temp_apr,temp_may,temp_jun,temp_jul,temp_aug,temp_sep,temp_oct,temp_nov,temp_dec); //pushing variables of the temperature of each Julian Day inside the same list
               console.log('Interpolation of temperatures completed :)');
-              console.log(Tambs);
 
               var JulianDays = [];
-              JulianDays = JulianDaysExtract(solar_table);
+              JulianDays = JulianDaysExtract(solar_table); //extracting Julian Days from the file 'solar_declination.csv'
               console.log('Julian Days extracted!');
 
               var solarDeclinations = [];
-              solarDeclinations = solarDeclination(JulianDays);
+              solarDeclinations = solarDeclination(JulianDays); //finding solar declination for each Julian Day
               console.log('Solar declinations as well');
 
               var Eos = [];
@@ -971,7 +1291,6 @@ function validation(){
 
               var Hincls_monthly = [];
               Hincls_monthly = Hincl(Hbs_incl,Hds_incl,Hr_incl,n_days);
-              console.log(Hincls)
               console.log("Solar irradiance on sloping plane calculated! Let's calculate the producted energy!")
 
               var eff_rels = [];
@@ -979,25 +1298,43 @@ function validation(){
               console.log(eff_rels);
 
               var Ps = [];
-              Ps = PCalc(Hincls_monthly, P_peak, eff_rels);
-              console.log(Ps);
+              Ps = PCalc(Hincls_monthly, P_peak, eff_rels); //calculating output for each month
 
               var Energies = [];
-              Energies.push(energy1,energy2,energy3,energy4,energy5,energy6,energy7,energy8,energy9,energy10,energy11,energy12);
+              Energies.push(energy1,energy2,energy3,energy4,energy5,energy6,energy7,energy8,energy9,energy10,energy11,energy12); //pushing the monthly needs to the same list
 
               var report = [];
-              report = ReportCalc(Energies,Ps);
+              report = ReportCalc(Energies,Ps); //making list of the difference between demand and output for each month
               console.log(report);
 
               var Psum = Ptot(Ps);
               var Nsum = Ptot(Energies);
 
-              mapWithMarker(lat,long,Psum,Nsum);
+              mapWithMarker(lat,long,Psum,Nsum); //creating the final World Wind
 
               var chartButton = document.getElementById("chartButton");
-              chartButton.addEventListener("click", ChartShow(Ps,report));
+              chartButton.addEventListener("click", ChartShow(Ps,report)); //creating the graph page
 
               function ChartShow(Ps,report){
+              /*
+                  PARAMETERS
+                  ----------
+
+                     Ps : list
+                     List of the output per each month
+
+                     report : list
+                     List of the difference between necessity and output per each month
+
+                  FUNCTION
+                  --------
+                     It opens a new webpage with the graph
+
+                  RETURNS
+                  -------
+                     nothing
+                  */
+
                   var ChartPage = window.open('/graph');
 
                   var buru = Ps;

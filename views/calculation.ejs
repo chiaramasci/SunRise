@@ -14,7 +14,21 @@
   <body>
     <%include templates/header.ejs%>
 
+<div id="adblockuff" class="noad">
+
+    <div id="box">
+        <p class="title">Hello!</p>
+        <p>So sorry for bothering you, but an active ad blocker was detected.<br>
+        In order to see the graph, after you have clicked the "send" button, you have to be careful that your browser is not
+        blocking the page showing the chart.</p>
+        <p style="text-align:center;">The Risers Team guarantees that there are no ads on SunRise website :)</p>
+    </div>
+
+    <p id="close" onclick="closeAd()">X<p>
+</div>
+
 <div style="clear:both;">
+
     <!--MAP CANVAS-->
     <div id="map_div">
         <canvas id="map" height="768">
@@ -117,6 +131,9 @@
 
     <div id="errors"></div>
     <input type="button" value="Send" onClick="validation()" class="button" id="chartButton" style="margin-left:-32px">
+
+    <p style="margin-top:60px;">Graph does not show? You have to allow SunRise popups. <br>
+            If you do not know how to manage this situazion, go to the <a href="/howto#graph">help</a> page in order to be helped</p>
     </div>
 
 
@@ -143,6 +160,52 @@
     <!--GRAPH-->
     <script src='/javascripts/Chart.js'></script>
 
+    <!--ADBLOCK-->
+    <script src="/javascripts/fuckadblock.js"></script>
+
+    <script>
+    var adblockalert = document.getElementById("adblockuff");
+    var closebutton = document.getElementById("close");
+
+    // Function called if AdBlock is not detected
+    function adBlockNotDetected() {
+        adblockalert.className = "noad";
+        console.log('noup');
+    }
+    // Function called if AdBlock is detected
+    function adBlockDetected() {
+        adblockalert.className = "ad";
+        console.log('detected');
+    }
+
+    // Recommended audit because AdBlock lock the file 'fuckadblock.js'
+    // If the file is not called, the variable does not exist 'fuckAdBlock'
+    // This means that AdBlock is present
+    if(typeof fuckAdBlock === 'undefined') {
+        adBlockDetected();
+    } else {
+        fuckAdBlock.onDetected(adBlockDetected);
+        fuckAdBlock.onNotDetected(adBlockNotDetected);
+        // and|or
+        fuckAdBlock.on(true, adBlockDetected);
+        fuckAdBlock.on(false, adBlockNotDetected);
+        // and|or
+        fuckAdBlock.on(true, adBlockDetected).onNotDetected(adBlockNotDetected);
+    }
+
+    // Change the options
+    fuckAdBlock.setOption('checkOnLoad', false);
+    // and|or
+    fuckAdBlock.setOption({
+        debug: true,
+        checkOnLoad: true,
+        resetOnEnd: false
+    });
+
+
+    function closeAd(){
+        adblockalert.className = "noad";}
+    </script>
 
   </body>
 </html>

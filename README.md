@@ -9,16 +9,17 @@ It consists of two subapplications: COMPANIES and AFRICA </return>
 The online working website is at sunrise.cloudno.de
 
 ##How to install it?
-1. Download the folder from github
-2. Install all npm dependencies with <return>
+1. Download the folder from github 1
+2. Install all npm dependencies with <return> 2
 ```
 npm install
 ```
-3. Go to the folder that you downloaded 
+3. Go to the folder that you downloaded 3
 ```
 cd <directory/of/the/downloaded/folder>
 ```
-4. Run it with npm
+4. Run it 4
 ```
 node server.js
 ```
+5. Go to the url 127.0.0.1/8080 5

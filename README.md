@@ -51,6 +51,7 @@ The Risers Team guarantees that there are no ads on the SunRise website/local ap
 ![companies example screenshot](/public/images/africa4.png)
 
 ##Credits
+* Item Using Nasa Web World Wind software
 * Item Solar Radiation data of ENEA – Energy Technologies Department – Thermal and Thermodynamic Solar Division – Research Centre Casaccia (RM) 
 * Item African global solar irradiance data from the Joint Research Centre of the European Commission
 * Item Data from Solar Aid 

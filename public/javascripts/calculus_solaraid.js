@@ -1081,8 +1081,7 @@ function validation(){
                            TotalHours = TotalLightCalc(DayLight,LampLight);
                            console.log(TotalHours);
 
-                           var LampLightYear = lampLightYearCalc(LampLight);
-                           done = 1;
+                           
 
                            var chartButton = document.getElementById("chartButton");
                            chartButton.addEventListener("click", ChartShow(DayLight, contribute));

@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c29c3273-1c70-42ac-a1b7-8f280cc5a1e4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/calculus_solaraid.js" afterPath="$PROJECT_DIR$/public/javascripts/calculus_solaraid.js" />
     </list>
     <ignored path="try_express.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,8 +46,8 @@
       <file leaf-file-name="calculus_solaraid.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/javascripts/calculus_solaraid.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-510">
-              <caret line="923" column="72" selection-start-line="923" selection-start-column="72" selection-end-line="923" selection-end-column="72" />
+            <state relative-caret-position="300">
+              <caret line="1083" column="27" selection-start-line="1083" selection-start-column="27" selection-end-line="1083" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -885,8 +886,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/calculus_solaraid.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-510">
-          <caret line="923" column="72" selection-start-line="923" selection-start-column="72" selection-end-line="923" selection-end-column="72" />
+        <state relative-caret-position="300">
+          <caret line="1083" column="27" selection-start-line="1083" selection-start-column="27" selection-end-line="1083" selection-end-column="27" />
           <folding />
         </state>
       </provider>

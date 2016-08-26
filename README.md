@@ -43,7 +43,7 @@ node server.js
 ![companies example screenshot](/public/images/africa4.png)
 
 ##Credits
-*Solar Radiation data of ENEA – Energy Technologies Department – Thermal and Thermodynamic Solar Division – Research Centre Casaccia (RM) 
+* Item Solar Radiation data of ENEA – Energy Technologies Department – Thermal and Thermodynamic Solar Division – Research Centre Casaccia (RM) 
 *African global solar irradiance data from the Joint Research Centre of the European Commission
 *Data from Solar Aid 
 *Free images from pixabay.com, www.pexels.com

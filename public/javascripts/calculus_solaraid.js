@@ -92,22 +92,97 @@ var latitudes = [37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22,
 var longitudes = [51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10, -11, -12, -13, -14, -15, -16, -17];
 
 function sinDeg (deg){
+/*
+     PARAMETERS
+     ----------
+     deg : int or float
+     It is the angle in degrees
+
+     FUNCTION
+     --------
+     It calculates the sin of an angle in degrees after converting it in radians
+
+     RETURNS
+     -------
+     Math.sin(rad) : float
+     The sin of the angle
+     */
     var rad = deg * Math.PI/180;
     return Math.sin(rad);}
 
 function cosDeg (deg){
+/*
+     PARAMETERS
+     ----------
+     deg : int or float
+     It is the angle in degrees
+
+     FUNCTION
+     --------
+     It calculates the cos of an angle in degrees after converting it in radians
+
+     RETURNS
+     -------
+     Math.cos(rad) : float
+     The cos of the angle
+     */
     var rad = deg * Math.PI/180;
     return Math.cos(rad);}
 
 function tanDeg (deg){
+/*
+     PARAMETERS
+     ----------
+     deg : int or float
+     It is the angle in degrees
+
+     FUNCTION
+     --------
+     It calculates the tan of an angle in degrees after converting it in radians
+
+     RETURNS
+     -------
+     Math.tan(rad) : float
+     The tan of the angle
+     */
     var rad = deg * Math.PI/180;
     return Math.tan(rad);}
 
 function acosDeg(cos){
+/*
+     PARAMETERS
+     ----------
+     cos : int or float
+     It is the cos of an angle
+
+     FUNCTION
+     --------
+     It finds the angle in degrees from cos
+
+     RETURNS
+     -------
+     rad * 180/Math.PI : float
+     The angle in degrees
+     */
     var rad = Math.acos(cos);
     return rad * 180/Math.PI;}
 
 function atanDeg(tan){
+/*
+     PARAMETERS
+     ----------
+     tan : int or float
+     It is the tan of an angle
+
+     FUNCTION
+     --------
+     It finds the angle in degrees from tan
+
+     RETURNS
+     -------
+     rad * 180/Math.PI : float
+     The angle in degrees
+     */
     var rad = Math.atan(tan);
     return rad * 180/Math.PI;}
 
@@ -267,13 +342,13 @@ function validation(){
 
               FUNCTION
               --------
-                 It findes the solar irradiations of the four points nearest to the location inserted by the user.
+                 It finds the solar irradiation of the four points nearest to the location inserted by the user.
                  They are necessary in order to do the interpolation
 
               RETURNS
               -------
                  H_month : list
-                 It is the list of the solar irradiations of the four points
+                 It is the list of the solar irradiation of the four points
               */
          var H1 = month[y1_index][x1_index];
          var H2 = month[y2_index][x1_index];
@@ -389,6 +464,21 @@ function validation(){
             }
 
       function solarDeclination (JulianDays){
+      /*
+       PARAMETERS
+       ----------
+          JulianDays : list
+          The Julian Days of the most representative day per each month
+
+       FUNCTION
+       --------
+          It calculates the solar declination in each Julian Day in the list
+
+       RETURNS
+       -------
+          solarDeclinations : list
+          It is the list of the solar declinations per each Julian Day in the list
+       */
                 solarDeclinations = [];
                 for(i=0; i<12; i++){
                   var n = parseFloat(JulianDays[i]);
@@ -404,6 +494,33 @@ function validation(){
 
 
       function Sunset(JulianDays, solarDeclinations, long, lat, time_zone){
+      /*
+             PARAMETERS
+             ----------
+                JulianDays : list
+                The Julian Days of the most representative day per each month
+
+                solarDeclinations : list
+                The solar declinations of all the Julian Days of the most representative days per each month
+
+                long : float
+                The longitude inserted by the user in the form "user_inputs"
+
+                lat : float
+                The latitude inserted by the user in the form "user_inputs"
+
+                time_zone : int
+                The gmt found in the function 'validation' (if "Global" was selected, the gmt is selected by the user)
+
+             FUNCTION
+             --------
+                It calculates the sunset hour in the most reprensentative day of each month
+
+             RETURNS
+             -------
+                Sunsets : list
+                Sunsets hour in the most representative day of each month
+             */
             var Sunsets = [];
                 for(i = 0; i < 12; i++){
                 var N = JulianDays[i];
@@ -420,6 +537,33 @@ function validation(){
       }
 
       function Sunrise(JulianDays, solarDeclinations, long, lat, time_zone){
+      /*
+           PARAMETERS
+           ----------
+              JulianDays : list
+              The Julian Days of the most representative day per each month
+
+              solarDeclinations : list
+              The solar declinations of all the Julian Days of the most representative days per each month
+
+              long : float
+              The longitude inserted by the user in the form "user_inputs"
+
+              lat : float
+              The latitude inserted by the user in the form "user_inputs"
+
+              time_zone : int
+              The gmt found in the function 'validation' (if "Global" was selected, the gmt is selected by the user)
+
+           FUNCTION
+           --------
+              It calculates the sunrise hour in the most reprensentative day of each month
+
+           RETURNS
+           -------
+              Sunrises : list
+              Sunrise hour in the most representative day of each month
+           */
                   var Sunrises = [];
                       for(i = 0; i < 12; i++){
                       var N = JulianDays[i];
@@ -436,6 +580,24 @@ function validation(){
             }
 
       function DayLightCalc(Sunrises,Sunsets){
+      /*
+         PARAMETERS
+         ----------
+            Sunrises : list
+            Sunrise hour in the most representative day of each month
+
+            Sunsets : list
+            Sunset hour in the most representative day of each month
+
+         FUNCTION
+         --------
+            It calculates the hours of natural light in the most representative day of each month
+
+         RETURNS
+         -------
+            Daylight : list
+            Hours of natural light in the most representative day of each month
+         */
             var DayLight = [];
                   for(i = 0; i < 12; i++){
                   var Sunrise = Sunrises[i];
@@ -450,12 +612,46 @@ function validation(){
                   }
 
       function powerCalc(H){
-            var wp = 0.38;
+              /*
+               PARAMETERS
+               ----------
+                  H : float
+                  Solar irradiation
+
+               FUNCTION
+               --------
+                  It calculates the output of the pv panel of the light "Sun King Pico"
+
+               RETURNS
+               -------
+                  P : float
+                  Output of the pv panel of the light "Sun King Pico"
+               */
+            var wp = 0.38; //watt peak of pv panel of the light "Sun King Pico"
             var P = wp * H * 0.75;
             return P;}
 
       function LampLightCalc(HofAllMonths, solar_light){
-            var W = 0.88;
+              /*
+                 PARAMETERS
+                 ----------
+                    HofAllMonths : list
+                    It is the global solar radiation per each month of the user's location
+
+                    solar_light : int
+                    number of "Sun King Pico" lights donated by the user
+
+                 FUNCTION
+                 --------
+                    It calculates the hours of light added thanks to the use of "Sun King Pico" light in a day
+
+                 RETURNS
+                 -------
+                    LampLight : list
+                    Hours of light added thanks to the use of "Sun King Pico" light in the most representative day of each month
+                 */
+
+            var W = 0.88; //watt of the light "Sun King Pico"
             var lamp_kwh = W / 1000; //kwh
             var AH = 0.47;
             var V = 3.2;
@@ -466,20 +662,42 @@ function validation(){
                 var H = HofAllMonths[i];
                 var P = powerCalc(H);
 
+                    //here says that if the output of the pv panel is higher
+                    //than the energy that the battery can contain, the watt-hours that
+                    //have to be considered is stored in the variable "output_battery"
+                    //If not, the watt-hours is the output of the pv panel (variable "P")
                     if(P >= output_battery){
                     var WH = output_battery}
                     else if (P < output_battery){
                     var WH = P;}
 
                 var lampHours = (WH / (lamp_kwh * 1000)) * 0.96 * solar_light;
-                //var TotalHours = lampHours + DayLight[i];
-
                 LampLight.push(lampHours);
                 }
 
             return LampLight;}
 
       function TotalLightCalc(DayLight,lampHours){
+      /*
+           PARAMETERS
+           ----------
+              Daylight : list
+              Hours of natural light in the most representative day of each month
+
+              lampHours : list
+              Hours of light added thanks to the use of "Sun King Pico" light in the most representative day of each month
+
+           FUNCTION
+           --------
+              It sums the hours of natural day light to the hours added by the "Sun King Pico" lights
+              for each representative day of each month.
+
+           RETURNS
+           -------
+              TotalHoursList : list
+              Total of hours of light per each representative day of each month
+           */
+
             var TotalHoursList = [];
 
             for (i = 0; i < 12; i++){
@@ -489,6 +707,23 @@ function validation(){
             return TotalHoursList;}
 
       function stateDataCalc(state){
+                /*
+                 PARAMETERS
+                 ----------
+                    state : string
+                    The state selected by the user
+
+                 FUNCTION
+                 --------
+                    It assigns values to the variables needed for the report (in the graph page)
+                    depending on the state chosen by the user
+
+                 RETURNS
+                 -------
+                    stateData : list
+                    The variables needed for the report of the state chosen by the user
+                 */
+
             var state = document.user_inputs.state.value;
             var stateData = [];
                 if (state=="kenya"){
@@ -545,10 +780,51 @@ function validation(){
       }
 
       function solar_lightCalc(donation){
+      /*
+               PARAMETERS
+               ----------
+                  donation : float
+                  The donation inserted by the user
+
+               FUNCTION
+               --------
+                  It calculates the number of lights donated thanks to the amount
+                  inserted
+
+               RETURNS
+               -------
+                  solar_light : int
+                  Number of lights
+               */
+
             var solar_light = Math.round(donation / 3.1);
             return solar_light;}
 
       function people_reachedCalc(state,solar_light,house){
+      /*
+               PARAMETERS
+               ----------
+                  state : string
+                  The state chosen by the user in the form
+
+                  solar_light : int
+                  Number of lights
+
+                  house : float
+                  Average of people in a family in the state chosen by the user
+
+
+               FUNCTION
+               --------
+                  It calculates how many people are reached by the donation done by
+                  the user
+
+               RETURNS
+               -------
+                  people_reached : float
+                  people reached by the donation of the user
+               */
+
             if (state == "global"){
                 var people_reached = solar_light * house * 0.87;}
             else{
@@ -557,6 +833,32 @@ function validation(){
             return people_reached;}
 
       function extra_studyCalc(state,solar_light,study_hours,student){
+                /*
+                     PARAMETERS
+                     ----------
+                        state : string
+                        The state chosen by the user in the form
+
+                        solar_light : int
+                        Number of lights
+
+                        study_hours : float
+                        number of study hours per student in a year in the state selected by the user
+
+                        student : float
+                        number of students in a family in the state selected by the user
+
+
+                     FUNCTION
+                     --------
+                        It calculates how many hours of studying the user is donating
+
+                     RETURNS
+                     -------
+                        extra_study : float
+                        hours of studying the user is donating
+                     */
+
             if (state == "global"){
                 var extra_study = solar_light * study_hours * student * 3 * 0.97;}
             else{
@@ -566,6 +868,28 @@ function validation(){
             return extra_study;}
 
       function co2_avertedCalc(state,solar_light,co2){
+      /*
+               PARAMETERS
+               ----------
+                  state : string
+                  The state chosen by the user in the form
+
+                  solar_light : int
+                  Number of lights
+
+                  co2 : float
+
+
+               FUNCTION
+               --------
+                  It calculates how much co2 of the kerosene lamps is averted
+                  thanks to the donation of the user in three years
+
+               RETURNS
+               -------
+                  co2_averted : float
+                  co2 averted in 3 years thanks to the donation
+               */
             if (state == "global"){
                 var co2_averted = solar_light * co2 * 0.37 * 3 * 0.97;}
             else{
@@ -575,6 +899,31 @@ function validation(){
       }
 
       function healthy_peopleCalc(state,solar_light,health,house){
+      /*
+             PARAMETERS
+             ----------
+                state : string
+                The state chosen by the user in the form
+
+                solar_light : int
+                Number of lights
+
+                health : float
+                people experiencing better health thanks to your donation
+
+                house : float
+                Average of people in a family in the state chosen by the user
+
+             FUNCTION
+             --------
+                It calculates how many people can experience better health thanks to the donation
+
+             RETURNS
+             -------
+                healthy_people : float
+                people experiencing better health thanks to the donation
+             */
+
             if (state == "global"){
                 var healthy_people = solar_light * health * house * 0.97;}
             else{
@@ -584,6 +933,31 @@ function validation(){
       }
 
       function reportHappy(state,stateData,donation){
+      /*
+         PARAMETERS
+         ----------
+            state : string
+            The state chosen by the user in the form
+
+            stateData : list
+            The variables found in the function "stateDataCalc" from the state selected by
+            the user
+
+            donation : float
+            The donation inserted by the user
+
+
+         FUNCTION
+         --------
+            It calculates the values for the report in the graph page, basing on the variables
+            found in the function "stateDataCalc"
+
+         RETURNS
+         -------
+            contribute : list
+            variables for the report
+         */
+
             var house = stateData[0];
             var saving_val = stateData[1];
             var study_hours = stateData[2];
@@ -604,13 +978,6 @@ function validation(){
             console.log(contribute);
             return contribute;}
 
-      function lampLightYearCalc(LampLight){
-
-            var LampLightYear = LampLight[0] * 31 + LampLight[1] * 28.25 + LampLight[2] * 31 + LampLight[3] * 30 + LampLight[4] * 31
-             + LampLight[5] * 30 + LampLight[6] * 31 + LampLight[7] * 31 + LampLight[8] * 30 + LampLight[9] * 31 +
-             LampLight[10] * 30 + LampLight[11] * 31;
-
-             return LampLightYear;}
 
       function loadData(){
 

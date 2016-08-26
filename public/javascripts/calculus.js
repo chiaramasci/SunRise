@@ -377,13 +377,12 @@ function validation(){
       };
  }
 
- function H_month(month,x1_index,x2_index,y1_index,y2_index){
+ function extractFromTable(file,x1_index,x2_index,y1_index,y2_index){
          /*
              PARAMETERS
              ----------
-                month : file
-                it is the variable that represents the file in which the daily averages of sun radiation values
-                of a given month are shown
+                file : file csv
+                it is the variable that represents the file from which the data has to be extracted
 
                 y1_index : integer
                 It is the index used in the latitudes list of the variable y1
@@ -400,18 +399,18 @@ function validation(){
 
              FUNCTION
              --------
-                It findes the solar irradiations of the four points nearest to the location inserted by the user.
+                It finds the solar irradiation (or the temperatures) of the four points nearest to the location inserted by the user.
                 They are necessary in order to do the interpolation
 
              RETURNS
              -------
                 H_month : list
-                It is the list of the solar irradiations of the four points
+                It is the list of the solar irradiation of the four points
              */
-        var H1 = month[y1_index][x1_index];
-        var H2 = month[y2_index][x1_index];
-        var H3 = month[y1_index][x2_index];
-        var H4 = month[y2_index][x2_index];
+        var H1 = file[y1_index][x1_index];
+        var H2 = file[y2_index][x1_index];
+        var H3 = file[y1_index][x2_index];
+        var H4 = file[y2_index][x2_index];
 
           var H_month = [];
           H_month.push(H1,H2,H3,H4);
@@ -506,7 +505,7 @@ function validation(){
 
            FUNCTION
            --------
-              It extracts the Julian Days from the column 'giorno giuliano' (in English 'Julian Day')
+              It extracts the Julian Days of the most representative day per each month from the column 'giorno giuliano' (in English 'Julian Day')
               and makes a list of them
 
            RETURNS
@@ -528,7 +527,7 @@ function validation(){
              PARAMETERS
              ----------
                 JulianDays : list
-                Contains the Julian Days
+                The Julian Days of the most representative day per each month
 
              FUNCTION
              --------
@@ -554,6 +553,22 @@ function validation(){
           }
 
       function Eo(JulianDays){
+      /*
+         PARAMETERS
+         ----------
+            JulianDays : list
+            The Julian Days of the most representative day per each month
+
+         FUNCTION
+         --------
+            It calculates the distance of the Sun from the Earth in the Julian Days of the list
+
+         RETURNS
+         -------
+            Eos : list
+            List of the distance of the Sun from the Earth in the Julian Days
+         */
+
           Eos = [];
               for (i = 0; i < 12; i++){
               var n = JulianDays[i];
@@ -564,6 +579,32 @@ function validation(){
       }
 
       function Hd(solarDeclinations, lat, HofAllMonths, Eos){
+      /*
+           PARAMETERS
+           ----------
+              solarDeclinations : list
+              Contains the solar declinations of all the Julian Days of the most representative days per each month
+
+              lat : float
+              The latitude inserted by the user in the form "user_inputs"
+
+              HofAllMonths : list
+              It is the global solar radiation per each month of the user's location
+
+              Eos : list
+              List of the distance of the Sun from the Earth in the Julian Days
+
+
+           FUNCTION
+           --------
+              It calculates the diffused irradiance (Hd) per each month
+
+           RETURNS
+           -------
+              Hds : list
+              List of the diffused irradiance per each month
+           */
+
         Hds = [];
             for(i = 0; i < 12; i++){
             var sol_decl = solarDeclinations[i];
@@ -572,7 +613,7 @@ function validation(){
             var Ws = acosDeg( (-(tanDeg(lat))) * tanDeg(sol_decl));
             Ws = Ws * (Math.PI / 180); //conversion in radiants
 
-            var Ics = 1367;
+            var Ics = 1367; //solar costant
             var Eo = Eos[i];
             var H = HofAllMonths[i];
 
@@ -590,9 +631,29 @@ function validation(){
       }
 
       function Hb(HofAllMonths, Hds){
+        /*
+            PARAMETERS
+            ----------
+
+               HofAllMonths : list
+               It is the global solar radiation per each month of the user's location
+
+               Hds : list
+               List of the diffused radiation per each month
+
+
+            FUNCTION
+            --------
+               It calculates the direct irradiance (Hb) per each month
+
+            RETURNS
+            -------
+               Hbs : list
+               List of the direct irradiance per each month
+            */
         var Hbs = [];
             for (i = 0; i < 12; i++){
-            var Hb = HofAllMonths[i] - Hds[i];
+            var Hb = HofAllMonths[i] - Hds[i]; //subtraction of the diffused irradiance from the global one
             Hbs.push(Hb);}
 
         return Hbs;
@@ -648,6 +709,34 @@ function validation(){
           }
 
       function Hb_incl(solarDeclinations, Hbs, lat, tilt, azimuth){
+      /*
+             PARAMETERS
+             ----------
+                solarDeclinations : list
+                Contains the solar declinations of all the Julian Days of the most representative days per each month
+
+                Hbs : list
+                List of the direct solar radiation per each month
+
+                lat : float
+                Latitude inserted by the user in the form "user_inputs"
+
+                tilt : float
+                The tilt inserted by the user in the form 'user_inputs'
+
+                azimuth : float
+                Orientation angle inserted by the user in the form 'user_inputs'
+
+             FUNCTION
+             --------
+                It finds the direct radiation on the tilted surface per each month
+
+             RETURNS
+             -------
+                Hbs_incl : list
+                The list of direct solar radiation on the tilted surface per each month
+             */
+
             Hbs_incl = [];
                for(i = 0; i < 12; i++){
                var sol_decl = solarDeclinations[i];
@@ -671,6 +760,24 @@ function validation(){
           }
 
       function Hd_incl(tilt, Hds){
+      /*
+                   PARAMETERS
+                   ----------
+                      tilt : float
+                      The tilt inserted by the user in the form 'user_inputs'
+
+                      Hds : list
+                      List of the diffused solar radiation  per each month
+
+                   FUNCTION
+                   --------
+                      It finds the diffused radiation on the tilted surface per each month
+
+                   RETURNS
+                   -------
+                      Hds_incl : list
+                      The list of diffused solar radiation on the tilted surface per each month
+                   */
             Hds_incl = [];
             for (i = 0; i < 12; i++){
                 var Hd = Hds[i];
@@ -682,10 +789,55 @@ function validation(){
       }
 
       function Hr_inclCalc(corifl,tilt){
+      /*
+                   PARAMETERS
+                   ----------
+                      corifl : float
+                      Coefficient of reflection of the surface selected by the user in the form 'user_inputs'
+
+                      tilt : float
+                      The tilt inserted by the user in the form 'user_inputs'
+
+                   FUNCTION
+                   --------
+                      It finds the reflected radiation on the tilted surface
+
+                   RETURNS
+                   -------
+                      corifl * ((1-cosDeg(tilt))/2) : float
+                      Reflected radiation on the tilted surface
+                   */
+
               return corifl * ((1-cosDeg(tilt))/2);
           }
 
       function Hincl(Hbs_incl,Hds_incl,Hr_incl,n_days){
+            /*
+             PARAMETERS
+             ----------
+                Hbs_incl : list
+                List of the direct solar radiation on the tilted surface per each month
+
+                Hds_incl : list
+                List of the diffused solar radiation on the tilted surface per each month
+
+                Hdr_incl : list
+                List of the reflected solar radiation on the tilted surface per each month
+
+                n_days : list
+                List of the number of days per each month
+
+             FUNCTION
+             --------
+                It finds the monthly solar radiation on the tilted surface per each month summing the direct, the diffused and the
+                reflected solar radiations and multiplying the sum for the number of the days in a given month.
+
+             RETURNS
+             -------
+                Hincls_monthly : list
+                The list of total monthly solar radiation on the tilted surface per each month
+             */
+
            Hincls = [];
            Hincls_monthly = [];
                 for(i = 0; i < 12; i++){
@@ -1192,35 +1344,34 @@ function validation(){
        solar_table,temp1,temp2,temp3,temp4,temp5,temp6,temp7,temp8,temp9,temp10,temp11,temp12) {
               if(error) { console.log(error); }
               console.log('Csv loaded successfully!');
-              console.log(solar_table[0]["mese"]);
 
               console.log('Getting H of all Months of x1,x2,y1,y2')
-              var H_xy_jan = H_month(month_1,x1_index,x2_index,y1_index,y2_index);
-              var H_xy_feb = H_month(month_2,x1_index,x2_index,y1_index,y2_index);
-              var H_xy_mar = H_month(month_3,x1_index,x2_index,y1_index,y2_index);
-              var H_xy_apr = H_month(month_4,x1_index,x2_index,y1_index,y2_index);
-              var H_xy_may = H_month(month_5,x1_index,x2_index,y1_index,y2_index);
-              var H_xy_jun = H_month(month_6,x1_index,x2_index,y1_index,y2_index);
-              var H_xy_jul = H_month(month_7,x1_index,x2_index,y1_index,y2_index);
-              var H_xy_aug = H_month(month_8,x1_index,x2_index,y1_index,y2_index);
-              var H_xy_sep = H_month(month_9,x1_index,x2_index,y1_index,y2_index);
-              var H_xy_oct = H_month(month_10,x1_index,x2_index,y1_index,y2_index);
-              var H_xy_nov = H_month(month_11,x1_index,x2_index,y1_index,y2_index);
-              var H_xy_dec = H_month(month_12,x1_index,x2_index,y1_index,y2_index);
+              var H_xy_jan = extractFromTable(month_1,x1_index,x2_index,y1_index,y2_index);
+              var H_xy_feb = extractFromTable(month_2,x1_index,x2_index,y1_index,y2_index);
+              var H_xy_mar = extractFromTable(month_3,x1_index,x2_index,y1_index,y2_index);
+              var H_xy_apr = extractFromTable(month_4,x1_index,x2_index,y1_index,y2_index);
+              var H_xy_may = extractFromTable(month_5,x1_index,x2_index,y1_index,y2_index);
+              var H_xy_jun = extractFromTable(month_6,x1_index,x2_index,y1_index,y2_index);
+              var H_xy_jul = extractFromTable(month_7,x1_index,x2_index,y1_index,y2_index);
+              var H_xy_aug = extractFromTable(month_8,x1_index,x2_index,y1_index,y2_index);
+              var H_xy_sep = extractFromTable(month_9,x1_index,x2_index,y1_index,y2_index);
+              var H_xy_oct = extractFromTable(month_10,x1_index,x2_index,y1_index,y2_index);
+              var H_xy_nov = extractFromTable(month_11,x1_index,x2_index,y1_index,y2_index);
+              var H_xy_dec = extractFromTable(month_12,x1_index,x2_index,y1_index,y2_index);
 
               console.log("Getting temperatures of x1,x2,y1,y2")
-              var temp_xy_jan = H_month(temp1,x1_index,x2_index,y1_index,y2_index);
-              var temp_xy_feb = H_month(temp2,x1_index,x2_index,y1_index,y2_index);
-              var temp_xy_mar = H_month(temp3,x1_index,x2_index,y1_index,y2_index);
-              var temp_xy_apr = H_month(temp4,x1_index,x2_index,y1_index,y2_index);
-              var temp_xy_may = H_month(temp5,x1_index,x2_index,y1_index,y2_index);
-              var temp_xy_jun = H_month(temp6,x1_index,x2_index,y1_index,y2_index);
-              var temp_xy_jul = H_month(temp7,x1_index,x2_index,y1_index,y2_index);
-              var temp_xy_aug = H_month(temp8,x1_index,x2_index,y1_index,y2_index);
-              var temp_xy_sep = H_month(temp9,x1_index,x2_index,y1_index,y2_index);
-              var temp_xy_oct = H_month(temp10,x1_index,x2_index,y1_index,y2_index);
-              var temp_xy_nov = H_month(temp11,x1_index,x2_index,y1_index,y2_index);
-              var temp_xy_dec = H_month(temp12,x1_index,x2_index,y1_index,y2_index);
+              var temp_xy_jan = extractFromTable(temp1,x1_index,x2_index,y1_index,y2_index);
+              var temp_xy_feb = extractFromTable(temp2,x1_index,x2_index,y1_index,y2_index);
+              var temp_xy_mar = extractFromTable(temp3,x1_index,x2_index,y1_index,y2_index);
+              var temp_xy_apr = extractFromTable(temp4,x1_index,x2_index,y1_index,y2_index);
+              var temp_xy_may = extractFromTable(temp5,x1_index,x2_index,y1_index,y2_index);
+              var temp_xy_jun = extractFromTable(temp6,x1_index,x2_index,y1_index,y2_index);
+              var temp_xy_jul = extractFromTable(temp7,x1_index,x2_index,y1_index,y2_index);
+              var temp_xy_aug = extractFromTable(temp8,x1_index,x2_index,y1_index,y2_index);
+              var temp_xy_sep = extractFromTable(temp9,x1_index,x2_index,y1_index,y2_index);
+              var temp_xy_oct = extractFromTable(temp10,x1_index,x2_index,y1_index,y2_index);
+              var temp_xy_nov = extractFromTable(temp11,x1_index,x2_index,y1_index,y2_index);
+              var temp_xy_dec = extractFromTable(temp12,x1_index,x2_index,y1_index,y2_index);
 
               console.log('Getting H for solar panels location');
               var H_jan = interpolation(lat,long,x1,x2,y1,y2,H_xy_jan);

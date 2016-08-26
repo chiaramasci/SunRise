@@ -25,3 +25,7 @@ node server.js
 5- Go to the url 127.0.0.1/8080 in your browser!
 
 ##Screenshots
+###Companies
+![companies example screenshot](/public/images/companies2.png)
+![companies example screenshot](/public/images/companies3.png)
+![companies example screenshot](/public/images/companies4.png)

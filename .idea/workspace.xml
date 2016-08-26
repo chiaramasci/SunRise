@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c29c3273-1c70-42ac-a1b7-8f280cc5a1e4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/calculus_solaraid.js" afterPath="$PROJECT_DIR$/public/javascripts/calculus_solaraid.js" />
     </list>
     <ignored path="try_express.iws" />
     <ignored path=".idea/workspace.xml" />

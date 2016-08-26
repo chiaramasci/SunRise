@@ -27,9 +27,17 @@ node server.js
 ###Web application pages
 1. [HOME](http://sunrise.cloudno.de):Explanation of what SunRise is
 2. [ABOUT](http://sunrise.cloudno.de/about):Talking about the Team, the Collaborations and Credits
-3. [COMPANIES](http://sunrise.cloudno.de/calculation):app to help the companies to optimize the use of their PV systems
-4. [AFRICA](http://sunrise.cloudno.de/solaraid):app
-5. [HELP](http://sunrise.cloudno.de/howto)
+3. [COMPANIES](http://sunrise.cloudno.de/calculation):App to help the companies to optimize the use of their PV systems
+4. [AFRICA](http://sunrise.cloudno.de/solaraid):App to show to the donor to Solar Aid how his/her contribution helps
+5. [HELP](http://sunrise.cloudno.de/howto):Explaining the inputs to insert in Companies and in Africa, giving tips, more information about them
+
+##Important notes
+###Internet connection needed
+Even if you downloaded the application, in order to make it work internet connection is necessary. 
+
+###Popup blocks
+As to show the graphs of the pages Companies and Africa a popup page is opened in another tab, you should verify that your browser does not block the popups of SunRise. Click [here](http://sunrise.cloudno.de/howto#graph) to have more info.
+The Risers Team guarantees that there are no ads on the SunRise website/local app
 
 ##Screenshots
 ###Companies
@@ -44,6 +52,6 @@ node server.js
 
 ##Credits
 * Item Solar Radiation data of ENEA – Energy Technologies Department – Thermal and Thermodynamic Solar Division – Research Centre Casaccia (RM) 
-*African global solar irradiance data from the Joint Research Centre of the European Commission
-*Data from Solar Aid 
-*Free images from pixabay.com, www.pexels.com
+* Item African global solar irradiance data from the Joint Research Centre of the European Commission
+* Item Data from Solar Aid 
+* Item Free images from pixabay.com, www.pexels.com

@@ -2,15 +2,15 @@
 
 ##What is it about?
 <return>SunRise is an open source software that shows how solar energy can contribute both for the developed countries and for the undeveloped ones.
-It consists of two subapplications: [companies](http://www.sunrise.cloudno.de/calculation) and [africa](http://www.sunrise.cloudno.de/solaraid) </return>
+It consists of two subapplications: [companies](http://sunrise.cloudno.de/calculation) and [africa](http://sunrise.cloudno.de/solaraid) </return>
 <return>Companies finds whether there is the necessity of optimizing the use of solar energy of a given company basing on the Pv system features and on the monthly electrical need.</return>
 <return>Africa gives an idea to the donor to SOLARAID of how much his donation would contribute in the African people's lives.</return>
 
-The online working website is at [sunrise.cloudno.de](http://www.sunrise.cloudno.de)
+The online working website is at [sunrise.cloudno.de](http://sunrise.cloudno.de)
 
 ##How to install it?
-1- Download the folder from github 
-2- Install all npm dependencies with <return> 
+1. Download the folder from github 
+2. Install all npm dependencies with <return> 
 ```
 npm install
 ```
@@ -29,3 +29,8 @@ node server.js
 ![companies example screenshot](/public/images/companies2.png)
 ![companies example screenshot](/public/images/companies3.png)
 ![companies example screenshot](/public/images/companies4.png)
+
+###Africa
+![companies example screenshot](/public/images/africa2.png)
+![companies example screenshot](/public/images/africa3.png)
+![companies example screenshot](/public/images/africa4.png)

@@ -1486,22 +1486,25 @@ function validation(){
                      nothing
                   */
 
-                  var ChartPage = window.open('/graph');
+                  var ChartPage = window.open('/graph'); //opening graph page
 
+                  //passing to ChartPage the values calculated
                   var buru = Ps;
-                  ChartPage.Ps_chart = buru;
+                  ChartPage.Ps_chart = buru; //the monthly output
                   var lala = Energies;
-                  ChartPage.Energies_chart = lala;
-                  ChartPage.user_lat = lat;
-                  ChartPage.user_long = long;
-                  ChartPage.user_tilt = tilt;
-                  ChartPage.user_azimuth = azimuth;
-                  ChartPage.user_surface = corifl;
-                  ChartPage.user_type = solar_type;
-                  ChartPage.user_standing = standing;
-                  ChartPage.user_kwp = P_peak;
+                  ChartPage.Energies_chart = lala; //the monthly need
+                  ChartPage.user_lat = lat; //latitude
+                  ChartPage.user_long = long; //longitude
+                  ChartPage.user_tilt = tilt; //tilt
+                  ChartPage.user_azimuth = azimuth; //orientation angle
+                  ChartPage.user_surface = corifl; //reflection coefficient of the surface
+                  ChartPage.user_type = solar_type; // the type of pv panel
+                  ChartPage.user_standing = standing; //the way it stands
+                  ChartPage.user_kwp = P_peak; //the peak power
                   var ahah = report;
-                  ChartPage.report_user = ahah;
+                  ChartPage.report_user = ahah; //the analysis of the monthly difference of the output and the demand
+
+                  document.getElementById("loading").className = "noad"; //closing "calculating" popup
                   }
             };
            }
@@ -1509,29 +1512,32 @@ function validation(){
 
 //----------------------------MAIN----------------------------------
 function calculation(){
-    //VARIABLES
-        //user's
-        var lat = document.user_inputs.lat.value;
-        var long = document.user_inputs.long.value;
-        var tilt = document.user_inputs.tilt.value;
-        var azimuth = document.user_inputs.azimuth.value;
-        var corifl = document.user_inputs.corifl.value;
-        var solar_type = document.user_inputs.type.value;
-        var kwp = document.user_inputs.kwp.value;
-        var standing = document.user_inputs.standing.value;
 
-         var energy1 = document.user_inputs.energy1.value;
-         var energy2 = document.user_inputs.energy2.value;
-         var energy3 = document.user_inputs.energy3.value;
-         var energy4 = document.user_inputs.energy4.value;
-         var energy5 = document.user_inputs.energy5.value;
-         var energy6 = document.user_inputs.energy6.value;
-         var energy7 = document.user_inputs.energy7.value;
-         var energy8 = document.user_inputs.energy8.value;
-         var energy9 = document.user_inputs.energy9.value;
-         var energy10 = document.user_inputs.energy10.value;
-         var energy11 = document.user_inputs.energy11.value;
-         var energy12 = document.user_inputs.energy12.value;
+
+
+        var lat = document.user_inputs.lat.value; //taking the latitude inserted in the form 'user_inputs'
+        var long = document.user_inputs.long.value; //taking the longitude inserted in the form 'user_inputs'
+        var tilt = document.user_inputs.tilt.value; //taking the tilt inserted in the form 'user_inputs'
+        var azimuth = document.user_inputs.azimuth.value; //taking the orientation angle inserted in the form 'user_inputs'
+        var corifl = document.user_inputs.corifl.value; //taking the coefficient of reflection from the surface selected in the form 'user_inputs'
+        var solar_type = document.user_inputs.type.value; //taking the type of PV selected in the form 'user_inputs'
+        var kwp = document.user_inputs.kwp.value; //taking the kwp inserted in the form 'user_inputs'
+        var standing = document.user_inputs.standing.value; //taking the the standing way of the PV selected in the form 'user_inputs'
+
+         var energy1 = document.user_inputs.energy1.value; //taking the energy needed in January from the form 'user_inputs'
+         var energy2 = document.user_inputs.energy2.value; //taking the energy needed in February from the form 'user_inputs'
+         var energy3 = document.user_inputs.energy3.value; //taking the energy needed in March from the form 'user_inputs'
+         var energy4 = document.user_inputs.energy4.value; //taking the energy needed in April from the form 'user_inputs'
+         var energy5 = document.user_inputs.energy5.value; //taking the energy needed in May from the form 'user_inputs'
+         var energy6 = document.user_inputs.energy6.value; //taking the energy needed in June from the form 'user_inputs'
+         var energy7 = document.user_inputs.energy7.value; //taking the energy needed in July from the form 'user_inputs'
+         var energy8 = document.user_inputs.energy8.value; //taking the energy needed in August from the form 'user_inputs'
+         var energy9 = document.user_inputs.energy9.value; //taking the energy needed in September from the form 'user_inputs'
+         var energy10 = document.user_inputs.energy10.value; //taking the energy needed in October from the form 'user_inputs'
+         var energy11 = document.user_inputs.energy11.value; //taking the energy needed in November from the form 'user_inputs'
+         var energy12 = document.user_inputs.energy12.value; //taking the energy needed in December from the form 'user_inputs'
+
+         document.getElementById("loading").className = "ad"; //opening "calculating" popup
 
         //global
         var x1;

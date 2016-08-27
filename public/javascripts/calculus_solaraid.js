@@ -1081,7 +1081,7 @@ function validation(){
                            TotalHours = TotalLightCalc(DayLight,LampLight);
                            console.log(TotalHours);
 
-                           
+
 
                            var chartButton = document.getElementById("chartButton");
                            chartButton.addEventListener("click", ChartShow(DayLight, contribute));
@@ -1098,6 +1098,8 @@ function validation(){
                                ChartPage.healthy_people = Math.round(contribute[5]);
                                ChartPage.LampLight = TotalHours;
                                ChartPage.donation = donation;
+
+                               document.getElementById("loading").className = "noad"; //closing "calculating" popup
                                  }
 
                           }
@@ -1117,6 +1119,8 @@ function validation(){
          var long = document.user_inputs.long.value;
          var donation = document.user_inputs.donation.value;
          var gmt = document.user_inputs.gmt.value;
+
+         document.getElementById("loading").className = "ad"; //opening "calculating" popup
 
          //global
          var x1;

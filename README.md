@@ -33,7 +33,7 @@ node server.js
 
 ##Important notes
 ###Internet connection needed
-Even if you downloaded the application, in order to make it work internet connection is necessary. 
+Even if you download the application, in order to make it work internet connection is necessary. 
 
 ###Popup blocks
 As to show the graphs of the pages Companies and Africa a popup page is opened in another tab, you should verify that your browser does not block the popups of SunRise. Click [here](http://sunrise.cloudno.de/howto#graph) to have more info.
@@ -51,8 +51,8 @@ The Risers Team guarantees that there are no ads on the SunRise website/local ap
 ![companies example screenshot](/public/images/africa4.png)
 
 ##Credits
-* Item Using Nasa Web World Wind software
-* Item Solar Radiation data of ENEA – Energy Technologies Department – Thermal and Thermodynamic Solar Division – Research Centre Casaccia (RM) 
-* Item African global solar irradiance data from the Joint Research Centre of the European Commission
-* Item Data from Solar Aid 
-* Item Free images from pixabay.com, www.pexels.com
+* Using Nasa Web World Wind software
+* Solar Radiation data of ENEA – Energy Technologies Department – Thermal and Thermodynamic Solar Division – Research Centre Casaccia (RM) 
+* African global solar irradiance data from the Joint Research Centre of the European Commission
+* Data from Solar Aid 
+* Free images from pixabay.com, www.pexels.com
